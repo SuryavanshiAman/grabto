@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "221735590820",
+    "project_id": "grabto-a9d09",
+    "storage_bucket": "grabto-a9d09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221735590820:android:6a0f56b73541dc3ad3bf31",
+        "android_client_info": {
+          "package_name": "digi.coders.discountDeals.discount_deals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221735590820-7l8rlfiosv90tr0dna4cf6bf4u87ajnh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digi.coders.discountDeals.discount_deals",
+            "certificate_hash": "823fd2f1765ac944a1f4d089b9dd5ed714f4bc76"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT0WCWoukgvALiSl0bp9J2LH1mTEyMjvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
