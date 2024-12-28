@@ -231,7 +231,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
     AverageType(widget.id);
 
     // Simulate API call delay
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     setState(() {
       isLoading = false; // Set to false to hide loading indicator
     });
@@ -253,12 +253,12 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(Icons.arrow_back_ios)),
+                child: const Icon(Icons.arrow_back_ios)),
             actions: [
               Container(
                 width: 45,
                 height: 45,
-                margin: EdgeInsets.only(right: 15),
+                margin: const EdgeInsets.only(right: 15),
                 child: Card(
                   elevation: 2,
                   color: Colors.white,
@@ -267,7 +267,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                     borderRadius: BorderRadius.circular(40.0),
                   ),
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.share,
                       size: 24,
                       color: MyColors.primaryColor,
@@ -284,7 +284,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
               Container(
                 width: 45,
                 height: 45,
-                margin: EdgeInsets.only(right: 15),
+                margin: const EdgeInsets.only(right: 15),
                 child: Card(
                   elevation: 2,
                   color: Colors.white,
@@ -314,7 +314,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
             child: Container(
               color: Colors.black
                   .withOpacity(0.5), // Adjust opacity as needed
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
                     MyColors.primaryColor,
@@ -333,7 +333,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         child: Card(
                           color: Colors.white,
@@ -352,7 +352,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                           navigateToGallerScreen(storeId);
                                         },
                                         child: Container(
-                                          margin: EdgeInsets.all(0),
+                                          margin: const EdgeInsets.all(0),
                                           width: double.infinity,
                                           height: MediaQuery
                                               .of(context)
@@ -376,7 +376,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                                 ),
                                             errorWidget: (context,
                                                 url, error) =>
-                                                Center(
+                                                const Center(
                                                     child: Icon(Icons
                                                         .error)),
                                           )
@@ -411,7 +411,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                                       errorWidget: (context,
                                                           url,
                                                           error) =>
-                                                          Center(
+                                                          const Center(
                                                               child:
                                                               Icon(
                                                                   Icons.error)),
@@ -433,7 +433,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                                 enableInfiniteScroll:
                                                 true,
                                                 autoPlayAnimationDuration:
-                                                Duration(
+                                                const Duration(
                                                     milliseconds:
                                                     800),
                                                 viewportFraction:
@@ -450,117 +450,174 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                           0.08, // Adjust according to your requirement
                                     ),
                                     Center(
-                                      child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery
-                                                .of(context)
-                                                .size
-                                                .width*0.7 ,
-                                            // Adjust according to your requirement
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "$storeName ",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: MediaQuery
-                                                          .of(
-                                                          context)
-                                                          .size
-                                                          .width *
-                                                          0.07,
-                                                      //decoration: TextDecoration.underline,
-                                                      // Adjust according to your requirement
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      color: MyColors
-                                                          .txtTitleColor),
-                                                ),
-
-                                                // Container(height: 1,width: double.infinity,color: Colors.black,),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Center(
-                                                  child: Text(
-                                                    "Address:- $storeAddress $storeAddress2 $storeCountry $storeState, $storePostcode",
-                                                    textAlign:
-                                                    TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: MediaQuery
-                                                            .of(
-                                                            context)
-                                                            .size
-                                                            .width *
-                                                            0.032,
-                                                        // Adjust according to your requirement
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        color:
-                                                        MyColors.blackBG),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Column(
-                                            children: [
-                                              Container(
-
-                                                child: Card(
-                                                  elevation: 2,
-
-                                                  color: Color(0xff136449),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(10),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(left: 8,right: 8,top: 5,bottom: 5),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                      children: [
-
-                                                        Icon(
-                                                          Icons.star,
-                                                          color: Colors.white,
-                                                          size: 18,
-                                                        ),
-                                                        SizedBox(width: 5),
-                                                        Text(
-                                                          "${star??""}",
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Text(
-                                                "${noOfRating??""}ratings",
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 12,
+                                      child: Container(
+                                        width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width,
+                                        padding: const EdgeInsets.all(8),
+                                        // color: Colors.red,
+                                        // Adjust according to your requirement
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "$storeName ",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: MediaQuery
+                                                      .of(
+                                                      context)
+                                                      .size
+                                                      .width *
+                                                      0.07,
+                                                  //decoration: TextDecoration.underline,
+                                                  // Adjust according to your requirement
                                                   fontWeight:
-                                                  FontWeight.w500,
-                                                ),
+                                                  FontWeight.w600,
+                                                  color: MyColors
+                                                      .txtTitleColor),
+                                            ),
+
+                                            // Container(height: 1,width: double.infinity,color: Colors.black,),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Center(
+                                              child: Text(
+                                                "Address:- $storeAddress $storeAddress2 $storeCountry $storeState, $storePostcode",
+                                                textAlign:
+                                                TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: MediaQuery
+                                                        .of(
+                                                        context)
+                                                        .size
+                                                        .width *
+                                                        0.032,
+                                                    // Adjust according to your requirement
+                                                    fontWeight:
+                                                    FontWeight.w400,
+                                                    color:
+                                                    MyColors.blackBG),
                                               ),
-                                              Image.asset("assets/images/google.png",scale: 28,),
-                                            ],
-                                          ),
-                                        ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
+                                      // Row(
+                                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      //   children: [
+                                      //     Container(
+                                      //       width: MediaQuery
+                                      //           .of(context)
+                                      //           .size
+                                      //           .width*0.7 ,
+                                      //       color: Colors.red,
+                                      //       // Adjust according to your requirement
+                                      //       child: Column(
+                                      //         mainAxisAlignment:
+                                      //         MainAxisAlignment.center,
+                                      //         children: [
+                                      //           Text(
+                                      //             "$storeName ",
+                                      //             textAlign: TextAlign.center,
+                                      //             style: TextStyle(
+                                      //                 fontSize: MediaQuery
+                                      //                     .of(
+                                      //                     context)
+                                      //                     .size
+                                      //                     .width *
+                                      //                     0.07,
+                                      //                 //decoration: TextDecoration.underline,
+                                      //                 // Adjust according to your requirement
+                                      //                 fontWeight:
+                                      //                 FontWeight.w600,
+                                      //                 color: MyColors
+                                      //                     .txtTitleColor),
+                                      //           ),
+                                      //
+                                      //           // Container(height: 1,width: double.infinity,color: Colors.black,),
+                                      //           SizedBox(
+                                      //             height: 10,
+                                      //           ),
+                                      //           Center(
+                                      //             child: Text(
+                                      //               "Address:- $storeAddress $storeAddress2 $storeCountry $storeState, $storePostcode",
+                                      //               textAlign:
+                                      //               TextAlign.center,
+                                      //               style: TextStyle(
+                                      //                   fontSize: MediaQuery
+                                      //                       .of(
+                                      //                       context)
+                                      //                       .size
+                                      //                       .width *
+                                      //                       0.032,
+                                      //                   // Adjust according to your requirement
+                                      //                   fontWeight:
+                                      //                   FontWeight.w400,
+                                      //                   color:
+                                      //                   MyColors.blackBG),
+                                      //             ),
+                                      //           ),
+                                      //         ],
+                                      //       ),
+                                      //     ),
+                                      //     // Column(
+                                      //     //   children: [
+                                      //     //     Container(
+                                      //     //
+                                      //     //       child: Card(
+                                      //     //         elevation: 2,
+                                      //     //
+                                      //     //         color: Color(0xff136449),
+                                      //     //         shape: RoundedRectangleBorder(
+                                      //     //           borderRadius:
+                                      //     //           BorderRadius.circular(10),
+                                      //     //         ),
+                                      //     //         child: Padding(
+                                      //     //           padding: EdgeInsets.only(left: 8,right: 8,top: 5,bottom: 5),
+                                      //     //           child: Row(
+                                      //     //             mainAxisAlignment:
+                                      //     //             MainAxisAlignment.center,
+                                      //     //             children: [
+                                      //     //
+                                      //     //               Icon(
+                                      //     //                 Icons.star,
+                                      //     //                 color: Colors.white,
+                                      //     //                 size: 18,
+                                      //     //               ),
+                                      //     //               SizedBox(width: 5),
+                                      //     //               Text(
+                                      //     //                 "${star??""}",
+                                      //     //                 style: TextStyle(
+                                      //     //                   color: Colors.white,
+                                      //     //                   fontSize: 14,
+                                      //     //                   fontWeight:
+                                      //     //                   FontWeight.bold,
+                                      //     //                 ),
+                                      //     //               ),
+                                      //     //             ],
+                                      //     //           ),
+                                      //     //         ),
+                                      //     //       ),
+                                      //     //     ),
+                                      //     //     Text(
+                                      //     //       "${noOfRating??""}ratings",
+                                      //     //       style: TextStyle(
+                                      //     //         color: Colors.grey,
+                                      //     //         fontSize: 12,
+                                      //     //         fontWeight:
+                                      //     //         FontWeight.w500,
+                                      //     //       ),
+                                      //     //     ),
+                                      //     //     Image.asset("assets/images/google.png",scale: 28,),
+                                      //     //   ],
+                                      //     // ),
+                                      //   ],
+                                      // ),
                                     ),
                                     SizedBox(
                                       height: MediaQuery
@@ -569,136 +626,8 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                           .width *
                                           0.015, // Adjust according to your requirement
                                     ),
-                                    // Container(
-                                    //   margin: EdgeInsets.symmetric(horizontal: 5),
-                                    //   child: SingleChildScrollView( // Wrap with SingleChildScrollView for horizontal scrolling
-                                    //     scrollDirection: Axis.horizontal,
-                                    //     child: Row(
-                                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    //       children: [
-                                    //         GestureDetector(
-                                    //           onTap: () {
-                                    //             _launchMaps();
-                                    //           },
-                                    //           child: Center(
-                                    //             child: Card(
-                                    //               elevation: 5,
-                                    //               color: Colors.white,
-                                    //               shape: RoundedRectangleBorder(
-                                    //                 borderRadius: BorderRadius.circular(10),
-                                    //                 side: BorderSide(
-                                    //                   color: MyColors.primaryColor,
-                                    //                   width: 1.0,
-                                    //                 ),
-                                    //               ),
-                                    //               child: Padding(
-                                    //                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-                                    //                 child: Row(
-                                    //                   mainAxisSize: MainAxisSize.min,
-                                    //                   children: [
-                                    //                     Icon(
-                                    //                       Icons.pin_drop,
-                                    //                       size: 21,
-                                    //                       color: MyColors.primaryColor,
-                                    //                     ),
-                                    //                     SizedBox(width: 5),
-                                    //                     Text(
-                                    //                       'Location',
-                                    //                       style: TextStyle(
-                                    //                         fontSize: 13.3,
-                                    //                         fontWeight: FontWeight.bold,
-                                    //                       ),
-                                    //                     ),
-                                    //                   ],
-                                    //                 ),
-                                    //               ),
-                                    //             ),
-                                    //           ),
-                                    //         ),
-                                    //         InkWell(
-                                    //           onTap: () {
-                                    //             _makePhoneCall(storeMobile);
-                                    //           },
-                                    //           child: Center(
-                                    //             child: Card(
-                                    //               elevation: 5,
-                                    //               color: Colors.white,
-                                    //               shape: RoundedRectangleBorder(
-                                    //                 borderRadius: BorderRadius.circular(10),
-                                    //                 side: BorderSide(
-                                    //                   color: MyColors.primaryColor,
-                                    //                   width: 1.0,
-                                    //                 ),
-                                    //               ),
-                                    //               child: Padding(
-                                    //                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-                                    //                 child: Row(
-                                    //                   mainAxisSize: MainAxisSize.min,
-                                    //                   children: [
-                                    //                     Icon(
-                                    //                       Icons.call,
-                                    //                       size: 21,
-                                    //                       color: MyColors.primaryColor,
-                                    //                     ),
-                                    //                     SizedBox(width: 5),
-                                    //                     Text(
-                                    //                       'Contact',
-                                    //                       style: TextStyle(
-                                    //                         fontSize: 13.3,
-                                    //                         fontWeight: FontWeight.bold,
-                                    //                       ),
-                                    //                     ),
-                                    //                   ],
-                                    //                 ),
-                                    //               ),
-                                    //             ),
-                                    //           ),
-                                    //         ),
-                                    //         GestureDetector(
-                                    //           onTap: () {
-                                    //             _navigateToAddRatingScreen(context);
-                                    //           },
-                                    //           child: Center(
-                                    //             child: Card(
-                                    //               elevation: 5,
-                                    //               color: Colors.white,
-                                    //               shape: RoundedRectangleBorder(
-                                    //                 borderRadius: BorderRadius.circular(10),
-                                    //                 side: BorderSide(
-                                    //                   color: MyColors.primaryColor,
-                                    //                   width: 1.0,
-                                    //                 ),
-                                    //               ),
-                                    //               child: Padding(
-                                    //                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-                                    //                 child: Row(
-                                    //                   mainAxisSize: MainAxisSize.min,
-                                    //                   children: [
-                                    //                     Icon(
-                                    //                       Icons.edit_note,
-                                    //                       size: 21,
-                                    //                       color: MyColors.primaryColor,
-                                    //                     ),
-                                    //                     SizedBox(width: 5),
-                                    //                     Text(
-                                    //                       'Review',
-                                    //                       style: TextStyle(
-                                    //                         fontSize: 13.3,
-                                    //                         fontWeight: FontWeight.bold,
-                                    //                       ),
-                                    //                     ),
-                                    //                   ],
-                                    //                 ),
-                                    //               ),
-                                    //             ),
-                                    //           ),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
                                     Container(
-                                      margin: EdgeInsets.symmetric(
+                                      margin: const EdgeInsets.symmetric(
                                           horizontal: 5),
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
@@ -760,7 +689,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                             ),
                                           if (avg_type.isNotEmpty &&
                                               subcategory_name
-                                                  .isNotEmpty) SizedBox(
+                                                  .isNotEmpty) const SizedBox(
                                               width: 16),
                                           // Space between the containers if both are present
                                           if (subcategory_name
@@ -781,14 +710,74 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                         ],
                                       ),
 
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle
+                                            ),
+                                            child: Card(
+                                              elevation: 2,
 
-                                    SizedBox(
-                                      height: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width *
-                                          0.045, // Adjust according to your requirement
+                                              color: Colors.green,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(20),
+
+                                              ),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(4.0),
+                                                child: Icon(
+                                                  Icons.star,
+                                                  color: Colors.white,
+                                                  size: 18,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            " ${star??"4.0"},",
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 18,
+                                              fontWeight:
+                                              FontWeight.w600,
+                                                fontFamily: "afacadFlux"
+                                            ),
+                                          ),
+                                          Text(
+                                            "  ${noOfRating??"4.0"}",
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight:
+                                              FontWeight.w600,
+                                                fontFamily: "afacadFlux"
+                                            ),
+                                          ),
+                                          const Text(
+                                            "  Google ratings",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight:
+                                              FontWeight.w600,
+                                              fontFamily: "afacadFlux"
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    // SizedBox(
+                                    //   height: MediaQuery
+                                    //       .of(context)
+                                    //       .size
+                                    //       .width *
+                                    //       0.045, // Adjust according to your requirement
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -859,7 +848,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                                   ),
                                               errorWidget: (context, url,
                                                   error) =>
-                                                  Center(
+                                                  const Center(
                                                       child: Icon(
                                                           Icons.error)),
                                             ),
@@ -893,13 +882,13 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                             BorderRadius.circular(20),
                                             // Rounded corners for the container
                                             child: Container(
-                                              color: Color(0x50000000),
+                                              color: const Color(0x50000000),
                                               // Transparent black color (#50000000)
                                               padding:
-                                              EdgeInsets.symmetric(
+                                              const EdgeInsets.symmetric(
                                                   vertical: 3,
                                                   horizontal: 10),
-                                              child: Text(
+                                              child: const Text(
                                                 "Gallery",
                                                 style: TextStyle(
                                                     color:
@@ -920,6 +909,8 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                   ],
                                 ),
                               ),
+
+
                             ],
                           ),
                         ),
@@ -948,9 +939,9 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
 
                       // OfferCardRow(),
                       Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                             top: 20, left: 15, right: 15, bottom: 10),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
                           children: [
@@ -975,9 +966,9 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                       ),
 
                       Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                             top: 15, left: 15, right: 15, bottom: 10),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
                           children: [
@@ -997,7 +988,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                         storeName: storeName,
                         addresss: "$storeAddress $storeAddress2 $storeCountry $storeState, $storePostcode",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
 
@@ -1011,30 +1002,30 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                         visible: storeSubcategory_names.isNotEmpty ||
                             timeList.isNotEmpty,
                         child: Container(
-                          margin: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           child: Card(
                             color: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
-                              side: BorderSide(
+                              side: const BorderSide(
                                   color: MyColors.primaryColor,
                                   width: 1), // Define the border side
                             ),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 3,
                             child: Container(
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
                               child: Column(
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.only(
+                                    margin: const EdgeInsets.only(
                                         top: 0,
                                         left: 5,
                                         right: 15,
                                         bottom: 10),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                       children: [
@@ -1083,7 +1074,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                     child: OpeningHours(
                                         timeList, getTimeList(timeList)),
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   // Visibility(
                                   //   visible: storeAddress.isNotEmpty ||
                                   //       storeAddress2.isNotEmpty ||
@@ -1125,30 +1116,30 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                       Visibility(
                         visible: featuresList.isNotEmpty,
                         child: Container(
-                          margin: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           child: Card(
                             color: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
-                              side: BorderSide(
+                              side: const BorderSide(
                                   color: MyColors.primaryColor,
                                   width: 1), // Define the border side
                             ),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 3,
                             child: Container(
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
                               child: Column(
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.only(
+                                    margin: const EdgeInsets.only(
                                         top: 0,
                                         left: 5,
                                         right: 15,
                                         bottom: 10),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                       children: [
@@ -1173,9 +1164,9 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                       Visibility(
                         visible: menuList.isNotEmpty,
                         child: Container(
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                               top: 20, left: 15, right: 15, bottom: 10),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment:
                             MainAxisAlignment.spaceBetween,
                             children: [
@@ -1225,8 +1216,8 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Container(
-                              margin: EdgeInsets.only(top: 10, left: 15),
-                              child: Row(
+                              margin: const EdgeInsets.only(top: 10, left: 15),
+                              child: const Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
                                 children: [
@@ -1243,13 +1234,13 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                 ? Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(
+                                  margin: const EdgeInsets.only(
                                       top: 10, left: 15),
                                   child: Row(
                                     children: [
                                       Text(
                                         "${avg_rating} ",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 35,
                                             fontWeight:
                                             FontWeight.bold),
@@ -1271,7 +1262,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                             itemSize: 15,
                                             itemBuilder:
                                                 (context, _) =>
-                                                Icon(
+                                                const Icon(
                                                   Icons.star,
                                                   color: Colors.amber,
                                                 ),
@@ -1282,7 +1273,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                           ),
                                           Text(
                                             "${review_count} reviews",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               decoration:
                                               TextDecoration
                                                   .underline,
@@ -1304,7 +1295,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                     child:
                                     _getReviewLay(reviewList)),
                                 Container(
-                                  margin: EdgeInsets.symmetric(
+                                  margin: const EdgeInsets.symmetric(
                                       horizontal: 20),
                                   child: Row(
                                     children: [
@@ -1316,7 +1307,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                           height: 1,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       InkWell(
@@ -1325,7 +1316,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                                 context,
                                                 reviewList);
                                           },
-                                          child: Text(
+                                          child: const Text(
                                             "See all reviews ",
                                             style: TextStyle(
                                               color: MyColors
@@ -1333,13 +1324,13 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                               fontSize: 15,
                                             ),
                                           )),
-                                      Icon(
+                                      const Icon(
                                         Icons.arrow_forward,
                                         color:
                                         MyColors.primaryColor,
                                         size: 24,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 2,
                                       ),
                                       Flexible(
@@ -1353,7 +1344,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 InkWell(
@@ -1362,9 +1353,9 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                         context);
                                   },
                                   child: Container(
-                                      margin: EdgeInsets.symmetric(
+                                      margin: const EdgeInsets.symmetric(
                                           horizontal: 20),
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           vertical: 12),
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -1374,7 +1365,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                               color: MyColors
                                                   .primaryColor)),
                                       width: double.infinity,
-                                      child: Center(
+                                      child: const Center(
                                           child: Text(
                                             "Add Review",
                                             style: TextStyle(
@@ -1392,7 +1383,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                         ),
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 150,
                       ),
                     ],
@@ -1404,7 +1395,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     height: 110, // Increase height for more space
-                    padding: EdgeInsets.fromLTRB(15, 40, 10, 15),
+                    padding: const EdgeInsets.fromLTRB(15, 40, 10, 15),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -1455,7 +1446,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                             child: Container(
                               height: 60,
                               // Height for the button
-                              margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                               // Add margin for spacing
                               decoration: BoxDecoration(
                                 color: MyColors.blueBG,
@@ -1469,7 +1460,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                   //     ? "Book Appointment"
                                   //     : "Book a Table",
                                   category_name=="Saloon"? "Book Appointment": kyc_status!="Pending"?"Book a Table":"Service Unavailable",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: MyColors.whiteBG,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -1519,7 +1510,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                             child: Container(
                               height: 60,
                               // Height for the button
-                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                              margin: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                               // Add margin for spacing
                               decoration: BoxDecoration(
                                 color: MyColors.primaryColor,
@@ -1530,7 +1521,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                 child: Text(
                                   kyc_status!="Pending"?'Pay Bill Now':"Service Unavailable",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: MyColors.whiteBG,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -1881,7 +1872,7 @@ setState(() {
   }
 
   Widget _buildNoReviewWidget() {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Container(
@@ -1917,7 +1908,7 @@ setState(() {
       child: Row(
         children: reviewList.map((review) {
           return Container(
-            margin: EdgeInsets.only(left: 5),
+            margin: const EdgeInsets.only(left: 5),
             child: _buildReviewItem(review),
           );
         }).toList(),
@@ -1931,8 +1922,8 @@ setState(() {
       // Fixed width
       height: 205,
       // Fixed height
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: MyColors.txtDescColor, width: 0.3),
@@ -1947,11 +1938,11 @@ setState(() {
                 radius: 20,
                 backgroundImage: NetworkImage(review.userImage),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   "${review.name}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: MyColors.primaryColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -1960,7 +1951,7 @@ setState(() {
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(6, 4, 8, 4),
+                padding: const EdgeInsets.fromLTRB(6, 4, 8, 4),
                 decoration: BoxDecoration(
                   color: (review.rating <= 2.0)
                       ? MyColors.primaryColor
@@ -1971,14 +1962,14 @@ setState(() {
                 ),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.star_rounded,
                       color: Colors.white,
                       size: 16,
                     ),
                     Text(
                       "${review.rating}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 10,
@@ -1989,11 +1980,11 @@ setState(() {
               ),
             ],
           ),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           Flexible(
             child: Text(
               review.description,
-              style: TextStyle(
+              style: const TextStyle(
                 color: MyColors.txtDescColor2,
                 fontSize: 14,
               ),
@@ -2001,7 +1992,7 @@ setState(() {
               maxLines: 2, // Limit to 2 lines
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             width: 250,
             height: 100,
@@ -2017,7 +2008,7 @@ setState(() {
                     return child;
                   } else {
                     // Image is still loading, display a loading indicator
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -2025,7 +2016,7 @@ setState(() {
                 errorBuilder: (BuildContext context, Object exception,
                     StackTrace? stackTrace) {
                   // Handle error if image fails to load
-                  return Center(
+                  return const Center(
                     child: Icon(
                       Icons.error_outline,
                       color: Colors.red,
@@ -2199,13 +2190,13 @@ setState(() {
           color: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(
+            side: const BorderSide(
               color: MyColors.primaryColor,
               width: 1.0,
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -2214,10 +2205,10 @@ setState(() {
                   size: 18,
                   color: MyColors.primaryColor,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Text(
                   text,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
@@ -2280,7 +2271,7 @@ class OfferCard extends StatelessWidget {
       height: 30,
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
             color: MyColors.primary, fontWeight: FontWeight.w400, fontSize: 12),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -2318,7 +2309,7 @@ class OfferCardRow extends StatelessWidget {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2327,7 +2318,7 @@ class OfferCardRow extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 // Aligns text to left and button to right
                 children: [
-                  Text(
+                  const Text(
                     "TODAY'S DISCOUNT",
                     style: TextStyle(
                       fontSize: 12.0,
@@ -2337,29 +2328,29 @@ class OfferCardRow extends StatelessWidget {
                   ),
                   // Close Button
                   IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     onPressed: () {
                       Navigator.pop(context); // Closes the bottom sheet
                     },
                   ),
                 ],
               ),
-              Text(
+              const Text(
                 'FLAT 15% Off',
                 style: TextStyle(
                   fontSize: 17.0,
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 'Term and Conditions',
                 style: TextStyle(
                   fontSize: 15.0,
                   fontWeight: FontWeight.w300,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               // Generate terms and conditions dynamically from the list
               ...termsAndConditions.map((term) {
                 return Padding(
@@ -2367,7 +2358,7 @@ class OfferCardRow extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("• "), // Bullet point
+                      const Text("• "), // Bullet point
                       Expanded(
                         child: Text(term),
                       ),
@@ -2407,7 +2398,7 @@ class OfferCardRow extends StatelessWidget {
                           onTap: () {
                             _showBottomSheet(context);
                           },
-                          child: OfferCard(
+                          child: const OfferCard(
                               title: "TODAY'S\nDISCOUNT",
                               offerType: "Flat",
                               discount: "20",
@@ -2609,7 +2600,7 @@ class PrebookOfferListWidget extends StatelessWidget {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             // Wrap everything inside SingleChildScrollView to enable scrolling
             child: Column(
@@ -2619,7 +2610,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Pre-Book offer",
                       style: TextStyle(
                         fontSize: 12.0,
@@ -2628,7 +2619,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -2637,20 +2628,20 @@ class PrebookOfferListWidget extends StatelessWidget {
                 ),
                 Text(
                   '$title',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 15),
+                const Text(
                   'Term and Conditions',
                   style: TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Column(
                   children: [
                     ...termsAndConditions.map((term) {
@@ -2659,7 +2650,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("• ",
+                            const Text("• ",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 18)),
                             Expanded(
@@ -2699,7 +2690,7 @@ class PrebookOfferListWidget extends StatelessWidget {
   Widget _buildPrebookOfferWidget(BuildContext context,
       PreBookTable prebooktable) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Center(
         child: CouponCard(
           backgroundColor: MyColors.primaryColor,
@@ -2710,7 +2701,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                   context, "${prebooktable.title}");
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2721,7 +2712,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                       Expanded(
                         child: Text(
                           '${prebooktable.title}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -2731,8 +2722,8 @@ class PrebookOfferListWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                     'Available for limited',
                     style: TextStyle(
                       color: Colors.white,
@@ -2741,7 +2732,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                       overflow: TextOverflow.clip,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   DottedLine(
                     height: 2,
                     color: Colors.white,
@@ -2749,14 +2740,14 @@ class PrebookOfferListWidget extends StatelessWidget {
                     dashWidth: 6.0,
                     dashSpacing: 6.0,
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
                         child: Text(
                           '${prebooktable.available_seat} slots available',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 11,
                             fontWeight: FontWeight.bold,
@@ -2771,7 +2762,7 @@ class PrebookOfferListWidget extends StatelessWidget {
             ),
           ),
           secondChild: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: MyColors.blackBG,
             ),
             child: Center(
@@ -2780,7 +2771,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                 color: MyColors.blackBG,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: MyColors.primaryColor,
                     width: 1.0,
                   ),
@@ -2801,7 +2792,7 @@ kycStatus=="Approve"?
                                     "$end_time", "$storeName", "$storeId")),
                       ):showErrorMessage(context, message: "Store temporarily unavailable here.Kindly visit store for more details.");
                     },
-                    child: Text(
+                    child: const Text(
                      'Book\nNow',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -2834,7 +2825,7 @@ class RegularOfferListWidget extends StatelessWidget {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             // Wrap everything inside SingleChildScrollView to enable scrolling
             child: Column(
@@ -2844,7 +2835,7 @@ class RegularOfferListWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Today's Discount",
                       style: TextStyle(
                         fontSize: 12.0,
@@ -2853,7 +2844,7 @@ class RegularOfferListWidget extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -2862,20 +2853,20 @@ class RegularOfferListWidget extends StatelessWidget {
                 ),
                 Text(
                   '$title',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 15),
+                const Text(
                   'Term and Conditions',
                   style: TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Column(
                   children: [
                     ...termsAndConditions.map((term) {
@@ -2884,7 +2875,7 @@ class RegularOfferListWidget extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("• ",
+                            const Text("• ",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 18)),
                             Expanded(
@@ -2924,7 +2915,7 @@ class RegularOfferListWidget extends StatelessWidget {
   Widget _buildRegularOfferWidget(BuildContext context,
       RegularOfferModel regularoffer) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Center(
         child: CouponCard(
           backgroundColor: MyColors.primaryColor,
@@ -2934,12 +2925,12 @@ class RegularOfferListWidget extends StatelessWidget {
               _showBottomSheet(context, regularoffer.title);
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
@@ -2955,14 +2946,14 @@ class RegularOfferListWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: Text(
                           regularoffer.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -2972,7 +2963,7 @@ class RegularOfferListWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   DottedLine(
                     height: 2,
                     color: Colors.white,
@@ -2980,8 +2971,8 @@ class RegularOfferListWidget extends StatelessWidget {
                     dashWidth: 6.0,
                     dashSpacing: 6.0,
                   ),
-                  SizedBox(height: 5),
-                  Row(
+                  const SizedBox(height: 5),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
@@ -3002,7 +2993,7 @@ class RegularOfferListWidget extends StatelessWidget {
             ),
           ),
           secondChild: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: MyColors.blackBG,
             ),
             child: Center(
@@ -3011,7 +3002,7 @@ class RegularOfferListWidget extends StatelessWidget {
                 color: MyColors.blackBG,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: MyColors.primaryColor,
                     width: 1.0,
                   ),
@@ -3031,7 +3022,7 @@ class RegularOfferListWidget extends StatelessWidget {
                                     regularoffer, storeName, "$addresss")),
                       ):showErrorMessage(context, message: "Store temporarily unavailable here.Kindly visit store for more details.");
                     },
-                    child: Text(
+                    child: const Text(
                      'Pay\nBill',
                       textAlign: TextAlign.center,
                       style: TextStyle(

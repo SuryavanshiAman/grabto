@@ -181,19 +181,23 @@ flutter:
     - family: roboto
       fonts:
         - asset: assets/fonts/Roboto_Regular.ttf
-  #    - family: metropolis
-  #      fonts:
-  #        - asset: assets/fonts/metropolis.light.otf
-  #    - family: ubuntu
-  #      fonts:
-  #        - asset: assets/fonts/Ubuntu-MediumItalic.ttf
-  #        - asset: assets/fonts/Ubuntu-Medium.ttf
-  #        - asset: assets/fonts/Ubuntu-Regular.ttf
-  #        - asset: assets/fonts/Ubuntu-Bold.ttf
-  #        - asset: assets/fonts/Ubuntu-BoldItalic.ttf
-  #        - asset: assets/fonts/Ubuntu-Italic.ttf
-  #        - asset: assets/fonts/Ubuntu-Light.ttf
-  #        - asset: assets/fonts/Ubuntu-LightItalic.ttf
+    - family: metropolis
+      fonts:
+        - asset: assets/fonts/metropolis.light.otf
+    - family: ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-MediumItalic.ttf
+        - asset: assets/fonts/Ubuntu-Medium.ttf
+        - asset: assets/fonts/Ubuntu-Regular.ttf
+        - asset: assets/fonts/Ubuntu-Bold.ttf
+        - asset: assets/fonts/Ubuntu-BoldItalic.ttf
+        - asset: assets/fonts/Ubuntu-Italic.ttf
+        - asset: assets/fonts/Ubuntu-Light.ttf
+        - asset: assets/fonts/Ubuntu-LightItalic.ttf
+
+    - family: afacadFlux
+      fonts:
+        - asset: assets/fonts/AfacadFlux-Regular.ttf
   #
 
 

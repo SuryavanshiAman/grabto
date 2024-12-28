@@ -2,7 +2,7 @@
 class Assets {
   Assets._();
 
-  static const String fontsMetropolislight = 'assets/fonts/metropolis.light.otf';
+  static const String fontsAfacadFluxRegular = 'assets/fonts/AfacadFlux-Regular.ttf';
   static const String fontsRobotoRegular = 'assets/fonts/Roboto_Regular.ttf';
   static const String fontsUbuntuBold = 'assets/fonts/Ubuntu-Bold.ttf';
   static const String fontsUbuntuBoldItalic = 'assets/fonts/Ubuntu-BoldItalic.ttf';

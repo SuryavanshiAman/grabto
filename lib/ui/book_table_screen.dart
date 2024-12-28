@@ -945,11 +945,19 @@ class BookingInfoCard extends StatelessWidget {
         ),
         SizedBox(height: 5), // Spacing between booking fee and available seats
         // Available seats text with text wrapping
+        // Text(
+        //   '$availableSeats seat${int.tryParse(availableSeats) != 1
+        //       ? 's'
+        //       : ''} left',
+        //   // Pluralization for available seats
+        //   style: TextStyle(
+        //     fontSize: 14,
+        //     color: Colors.green,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // )
         Text(
-          '$availableSeats seat${int.tryParse(availableSeats) != 1
-              ? 's'
-              : ''} left',
-          // Pluralization for available seats
+          '${(int.tryParse(availableSeats) ?? 0) < 0 ? 0 : int.tryParse(availableSeats)} seat${(int.tryParse(availableSeats) ?? 0) != 1 ? 's' : ''} left',
           style: TextStyle(
             fontSize: 14,
             color: Colors.green,

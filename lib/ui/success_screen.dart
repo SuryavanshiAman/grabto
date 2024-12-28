@@ -62,7 +62,7 @@ class SuccessScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(MyColors.primaryColor),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
               ),
             ),
           ],
