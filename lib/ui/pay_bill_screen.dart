@@ -68,7 +68,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
   void billDetails() {
     // Parse the string values from the controller and offer into doubles
-    double? parsedBillAmount = double.tryParse(_amountController.text);
+    double? parsedBillAmount = double.tryParse(_amountController.text)!.roundToDouble();
     double? parsedDiscountPercentage = double.tryParse(widget.regularoffer.discount_percentage);
 
     // Validate parsed inputs
@@ -76,13 +76,10 @@ class _PayBillScreenState extends State<PayBillScreen> {
       print("Invalid input: bill amount, discount percentage, or convenience fee percentage is null.");
       return;
     }
-
-
-
     setState(() {
       _isAmountEntered = true;
       // Set parsed values to instance variables
-      billamount = parsedBillAmount;
+      billamount = parsedBillAmount.roundToDouble();
       discountPercentage = parsedDiscountPercentage;
 
       // Calculate discount amount and update after-discount amount
@@ -92,11 +89,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
       this.convenienceFeeParcentacge=convenienceFeeParcentacge;
       // Calculate convenience fee based on the percentage
       convenienceFee = discountAmount! * (convenienceFeeParcentacge! / 100);
-      afterConvenienceFee = afterDiscountAmount! + convenienceFee!;
+      afterConvenienceFee = afterDiscountAmount!.roundToDouble() + convenienceFee!;
 
       // Set the final payment amount
       payamount = afterConvenienceFee;
-
+      payamount = payamount!.roundToDouble();
+      // payamount = double.parse(payamount!.toStringAsFixed(2));
       // Print the final calculated amount for verification
       print("Final amount : $payamount");
     });
@@ -298,7 +296,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                         ],
                                       ),
                                       Text(
-                                        "₹$afterDiscountAmount",
+                                        "₹${afterDiscountAmount!.roundToDouble()}",
                                         style: TextStyle(
                                           color: Colors.greenAccent,
                                           fontSize: 38,
@@ -347,7 +345,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                                     // Flexible text
                                                     Flexible(
                                                       child: Text(
-                                                        "Wow! you're saving ₹$discountAmount",
+                                                        "Wow! you're saving ₹${discountAmount!.roundToDouble()}",
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 16,
@@ -715,7 +713,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '- \u{20B9}$discountAmount',
+                                  '- \u{20B9}${discountAmount!.roundToDouble()}',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -738,7 +736,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '\u{20B9}$convenienceFee',
+                                  '\u{20B9}${convenienceFee!.roundToDouble()}',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,

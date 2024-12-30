@@ -1148,23 +1148,25 @@ class _HomeBottamScreenState extends State<HomeBottamScreen> with WidgetsBinding
                 //categories end
 
                 //Great Offers start
-                if (!greatOfferList1.isEmpty)
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: 25, left: 15, right: 15, bottom: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Great Offers",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ),
-                if (!greatOfferList1.isEmpty)
-                  GreatOffersWidget(greatOfferList1, "${cityId}"),
+                ///
+                // if (!greatOfferList1.isEmpty)
+                //   Container(
+                //     margin: EdgeInsets.only(
+                //         top: 25, left: 15, right: 15, bottom: 15),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         Text(
+                //           "Great Offers",
+                //           style: TextStyle(
+                //               fontSize: 18, fontWeight: FontWeight.w500),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // if (!greatOfferList1.isEmpty)
+                //   GreatOffersWidget(greatOfferList1, "${cityId}"),
+                ///
                 // SizedBox(
                 //   height: 10,
                 // ),
