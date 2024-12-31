@@ -12,7 +12,7 @@ class StoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 0, left: 15, right: 15, bottom: 0),
+      margin: const EdgeInsets.only(top: 0, left: 15, right: 15, bottom: 0),
       child: LayoutBuilder(
         builder: (context, constraints) {
           return ListView.builder(
@@ -29,7 +29,7 @@ class StoreWidget extends StatelessWidget {
                   }));
                 },
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
                   child: Card(
                     color: Colors.white,
                     elevation: 5,
@@ -54,12 +54,12 @@ class StoreWidget extends StatelessWidget {
                                 height: double.infinity,
                               ),
                               errorWidget: (context, url, error) =>
-                                  Center(child: Icon(Icons.error)),
+                                  const Center(child: Icon(Icons.error)),
                             ),
                           ),
                           Container(
                             color: Colors.white,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -70,7 +70,7 @@ class StoreWidget extends StatelessWidget {
                                     Expanded(
                                       child: Text(
                                         store.storeName,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: MyColors.txtTitleColor,
                                           fontSize: 20,
@@ -97,17 +97,17 @@ class StoreWidget extends StatelessWidget {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  // Text(
-                                                  //   "${store.rating}",
-                                                  //   style: TextStyle(
-                                                  //     color: Colors.white,
-                                                  //     fontSize: 12,
-                                                  //     fontWeight:
-                                                  //         FontWeight.bold,
-                                                  //   ),
-                                                  // ),
-                                                  SizedBox(width: 5),
-                                                  Icon(
+                                                  Text(
+                                                    "${store.rating}",
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  const Icon(
                                                     Icons.star,
                                                     color: Colors.white,
                                                     size: 15,
@@ -120,13 +120,13 @@ class StoreWidget extends StatelessWidget {
                                       ),
                                   ],
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Row(
                                   children: [
                                     if (store.distance.isNotEmpty) ...[
                                       Text(
                                         '${store.distance} km',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: MyColors.txtDescColor2,
                                           fontSize: 12,
@@ -136,7 +136,7 @@ class StoreWidget extends StatelessWidget {
                                     ],
                                   ],
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -144,16 +144,16 @@ class StoreWidget extends StatelessWidget {
                                     Expanded(
                                       child: Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.star,
                                             color: MyColors.blackBG,
                                             size: 15,
                                           ),
-                                          SizedBox(width: 5),
+                                          const SizedBox(width: 5),
                                           Expanded(
                                             child: Text(
                                               store.subcategoryName,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 color: MyColors.blackBG,
                                                 fontSize: 12,
@@ -169,7 +169,7 @@ class StoreWidget extends StatelessWidget {
                                         child: Container(
                                           child: Text(
                                             '${store.redeem} Redeemed',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.green,
                                               fontSize: 11,
@@ -185,7 +185,7 @@ class StoreWidget extends StatelessWidget {
                           ),
                           Container(
                             height: 50,
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 15, top: 10, bottom: 10, right: 15),
                             color: MyColors.blueBG,
                             child: Row(
@@ -199,7 +199,7 @@ class StoreWidget extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 // Comment out the Padding widget and move the Expanded widget directly inside the Row
                                 // Padding(
                                 //   padding: const EdgeInsets.only(bottom: 0),
@@ -207,7 +207,7 @@ class StoreWidget extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     "Offer :- " + store.offers,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 18),

@@ -118,7 +118,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
       backgroundColor: MyColors.backgroundBg,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -126,20 +126,20 @@ class _PayBillScreenState extends State<PayBillScreen> {
         titleSpacing: 0,
         title: Row(
           children: [
-            SizedBox(width: 0), // Yadi zarurat nahi ho toh ise hata bhi sakte hain
+            const SizedBox(width: 0), // Yadi zarurat nahi ho toh ise hata bhi sakte hain
             Expanded( // Yahan `Expanded` ka use kiya
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     widget.store_name,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis, // Text truncate karega
                     maxLines: 1, // Sirf ek line mein text dikhayega
                   ),
                   Text(
                     widget.store_address,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                       color: MyColors.textColor,
@@ -176,7 +176,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
                           Container(
                             width: double.infinity,
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: MyColors.offerCardColor,
                               borderRadius: BorderRadius.circular(12),
@@ -187,7 +187,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                               children: [
                                 Text(
                                   !_isAmountEntered?"ENTER BILL AMOUNT":"YOUR BILL",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -195,16 +195,16 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                     wordSpacing: 3.0,
                                   ),
                                 ),
-                                SizedBox(height: 12),
+                                const SizedBox(height: 12),
                                 AnimatedSwitcher(
-                                  duration: Duration(milliseconds: 300),
+                                  duration: const Duration(milliseconds: 300),
                                   transitionBuilder: (Widget child, Animation<double> animation) {
                                     return FadeTransition(opacity: animation, child: child);
                                   },
                                   child: !_isAmountEntered
                                       ? // Amount Entry View
                                   Center(
-                                    key: ValueKey('entryView'),
+                                    key: const ValueKey('entryView'),
                                     child: Column(
                                       children: [
                                         IntrinsicWidth(
@@ -214,7 +214,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                               Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     "₹",
                                                     style: TextStyle(
                                                         color: Colors.white,
@@ -226,11 +226,11 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                                       controller: _amountController,
                                                       focusNode: _textFieldFocusNode,
                                                       keyboardType: TextInputType.number,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 40,
                                                           fontWeight: FontWeight.w600),
-                                                      decoration: InputDecoration(
+                                                      decoration: const InputDecoration(
                                                         hintText: "0",
                                                         border: InputBorder.none,
                                                         hintStyle: TextStyle(
@@ -246,12 +246,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                                 height: 1,
                                                 color: Colors.grey,
                                               ),
-                                              SizedBox(height: 16),
+                                              const SizedBox(height: 16),
 
                                             ],
                                           ),
                                         ),
-                                        Text(
+                                        const Text(
                                           "Proceed to cart",
                                           style: TextStyle(
                                             color: Colors.white,
@@ -266,17 +266,17 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                   )
                                       : // Display entered amount with discount and Edit option
                                   Column(
-                                    key: ValueKey('displayView'),
+                                    key: const ValueKey('displayView'),
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
 
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Text(
+                                          const Text(
                                             "₹",
                                             style: TextStyle(
-                                              color: const Color.fromARGB(255, 244, 229, 229),
+                                              color: Color.fromARGB(255, 244, 229, 229),
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -284,12 +284,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
                                           Text(
                                             "${_amountController.text}",
-                                            style: TextStyle(
-                                              color: const Color.fromARGB(255, 244, 229, 229),
+                                            style: const TextStyle(
+                                              color: Color.fromARGB(255, 244, 229, 229),
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               decoration: TextDecoration.lineThrough,
-                                              decorationColor: const Color.fromARGB(
+                                              decorationColor: Color.fromARGB(
                                                   255, 244, 229, 229),
                                             ),
                                           ),
@@ -297,7 +297,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                       ),
                                       Text(
                                         "₹${afterDiscountAmount!.roundToDouble()}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.greenAccent,
                                           fontSize: 38,
                                           fontWeight: FontWeight.bold,
@@ -317,9 +317,9 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                       Center(
                                         child: Container(
                                           width: double.infinity,
-                                          padding: EdgeInsets.all(10.0), // Padding inside the container
+                                          padding: const EdgeInsets.all(10.0), // Padding inside the container
                                           decoration: BoxDecoration(
-                                            gradient: LinearGradient(
+                                            gradient: const LinearGradient(
                                               colors: [Colors.green, Color.fromARGB(255, 162, 198, 155)], // Gradient colors
                                               begin: Alignment.topCenter,
                                               end: Alignment.bottomCenter,
@@ -341,12 +341,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                    SizedBox(width: 8), // Space between image and text
+                                                    const SizedBox(width: 8), // Space between image and text
                                                     // Flexible text
                                                     Flexible(
                                                       child: Text(
                                                         "Wow! you're saving ₹${discountAmount!.roundToDouble()}",
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 16,
                                                           // fontWeight: FontWeight.bold,
@@ -362,7 +362,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                         ),
                                       ),
 
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       GestureDetector(
                                         onTap: () {
                                           // Switch back to the amount entry view
@@ -376,10 +376,10 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                             _isGifShown=false;
                                           });
                                         },
-                                        child: Text(
+                                        child: const Text(
                                           "Edit amount",
                                           style: TextStyle(
-                                            color: const Color.fromARGB(255, 255, 255, 255),
+                                            color: Color.fromARGB(255, 255, 255, 255),
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -402,7 +402,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 alignment: Alignment.center,
                                 child: AnimatedOpacity(
                                   opacity: _isAmountEntered ? 1.0 : 0.0,
-                                  duration: Duration(milliseconds: 300),
+                                  duration: const Duration(milliseconds: 300),
                                   child: Image.asset(
                                     'assets/gif/cheer_gif.gif', // Use the path to your GIF here
                                     width:300, // Adjust size as needed
@@ -432,16 +432,14 @@ class _PayBillScreenState extends State<PayBillScreen> {
                       ),
                     ),
 
-
-                    SizedBox(height: 30,),
-
+                    const SizedBox(height: 30,),
 
                     Center(
                       child: Stack(
                         children: [
                           Container(
-                            margin: EdgeInsets.symmetric(horizontal: 15),
-                            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10), // Padding inside the container
+                            margin: const EdgeInsets.symmetric(horizontal: 15),
+                            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10), // Padding inside the container
                             decoration: BoxDecoration(
                               color: Colors.white, // Container background color
                               borderRadius: BorderRadius.circular(15.0), // Rounded corners
@@ -451,7 +449,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 1,
                                   blurRadius: 1,
-                                  offset: Offset(0, 0), // Shadow position
+                                  offset: const Offset(0, 0), // Shadow position
                                 ),
                               ],
                             ),
@@ -466,20 +464,20 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                SizedBox(width: 15), // Space between image and column
+                                const SizedBox(width: 15), // Space between image and column
                                 // Column with two texts
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "Flat ${widget.regularoffer.discount_percentage}% Off", // Replace with your title
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
                                     ),
-                                    SizedBox(height: 5), // Space between title and subtitle
+                                    const SizedBox(height: 5), // Space between title and subtitle
                                     Text(
                                       "on bill payment", // Replace with your subtitle
                                       style: TextStyle(
@@ -508,11 +506,11 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                     color: Colors.black.withOpacity(0.25), // Shadow color with opacity
                                     spreadRadius: 1, // Spread radius
                                     blurRadius: 5, // Blur radius for softness
-                                    offset: Offset(2, 1), // Offset for shadow (x, y)
+                                    offset: const Offset(2, 1), // Offset for shadow (x, y)
                                   ),
                                 ],
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "+",
                                   style: TextStyle(
@@ -540,11 +538,11 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                     color: Colors.black.withOpacity(0.25), // Shadow color with opacity
                                     spreadRadius: 1, // Spread radius
                                     blurRadius: 5, // Blur radius for softness
-                                    offset: Offset(2, 1), // Offset for shadow (x, y)
+                                    offset: const Offset(2, 1), // Offset for shadow (x, y)
                                   ),
                                 ],
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "+",
                                   style: TextStyle(
@@ -559,7 +557,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
 
 
                     // Padding(
@@ -653,8 +651,8 @@ class _PayBillScreenState extends State<PayBillScreen> {
                     //   height: 20,
                     // ),
                     if(billamount!=null)
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
                         child: Text(
                           'Bill Details',
                           style: TextStyle(
@@ -672,14 +670,14 @@ class _PayBillScreenState extends State<PayBillScreen> {
                           // Border with 1px width
                           borderRadius: BorderRadius.circular(20), // Rounded corners
                         ),
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         child: Column(
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 // Left-aligned text
-                                Text(
+                                const Text(
                                   'Bill amount',
                                   style: TextStyle(
                                     fontSize: 14,
@@ -690,7 +688,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 // Right-aligned text
                                 Text(
                                   '\u{20B9}$billamount',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black,
@@ -698,12 +696,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 // Left-aligned text
-                                Text(
+                                const Text(
                                   // '${widget.regularoffer.title}',
                                   'Discount',
                                   style: TextStyle(
@@ -714,7 +712,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                                 Text(
                                   '- \u{20B9}${discountAmount!.roundToDouble()}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.green,
@@ -722,12 +720,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 // Left-aligned text
-                                Text(
+                                const Text(
                                   'Convenience fee',
                                   style: TextStyle(
                                     fontSize: 14,
@@ -737,7 +735,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                                 Text(
                                   '\u{20B9}${convenienceFee!.roundToDouble()}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.green,
@@ -745,7 +743,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
                                 Flexible(
@@ -757,12 +755,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 // Left-aligned text
-                                Text(
+                                const Text(
                                   'To Pay',
                                   style: TextStyle(
                                     fontSize: 15,
@@ -773,7 +771,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 // Right-aligned text
                                 Text(
                                   '\u{20B9}$payamount',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
@@ -784,11 +782,11 @@ class _PayBillScreenState extends State<PayBillScreen> {
                           ],
                         ),
                       ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     // OfferTermsWidget(),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                   ],
@@ -803,7 +801,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
               child:Container(
 
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   // color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
@@ -823,7 +821,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                         billDetails();
 
                         if (_isAmountEntered && !_isGifShown) {
-                          Future.delayed(Duration(seconds: 3), () {
+                          Future.delayed(const Duration(seconds: 3), () {
                             setState(() {
                               _isGifShown = true; // Mark that the GIF has been shown
                             });
@@ -879,10 +877,10 @@ class _PayBillScreenState extends State<PayBillScreen> {
                       ),
                     ),
                     child: isLoading
-                        ? CircularProgressIndicator(color: MyColors.primaryColor)
+                        ? const CircularProgressIndicator(color: MyColors.primaryColor)
                         : Text(
                       billamount==null?"Next" :"Proceed to pay \u{20B9}$payamount",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
