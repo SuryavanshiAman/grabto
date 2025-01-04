@@ -23,6 +23,7 @@ import 'package:discount_deals/ui/transaction_screen.dart';
 import 'package:discount_deals/utils/snackbar_helper.dart';
 import 'package:discount_deals/widget/item_list_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:http/http.dart' as http;
@@ -168,6 +169,16 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     await getUserDetails();
     await fetchCity();
     await currentMembership("$user_id");
+  }
+  Future<bool> _onWillPop() async {
+    if (_selectedIndex > 0) {
+      setState(() {
+        _selectedIndex = 0;
+      });
+      return false;
+    } else {
+      return await showExitConfirmation(context) ?? true;
+    }
   }
 
   @override
@@ -653,56 +664,62 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         ),
       ),
       //
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              color: MyColors.bottomNavigationUnselectedColor,
+      bottomNavigationBar: PopScope(
+        canPop: false,
+        onPopInvoked: (v) {
+          _onWillPop();
+        },
+        child: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                color: MyColors.bottomNavigationUnselectedColor,
+              ),
+              activeIcon: Icon(
+                Icons.home,
+                color: MyColors.bottomNavigationSelectedColor,
+              ),
+              label: "Home",
             ),
-            activeIcon: Icon(
-              Icons.home,
-              color: MyColors.bottomNavigationSelectedColor,
-            ),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.category_outlined,
-                color: MyColors.bottomNavigationUnselectedColor,
-              ),
-              activeIcon: Icon(
-                Icons.category_rounded,
-                color: MyColors.bottomNavigationSelectedColor,
-              ),
-              label: "Categories"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite_border,
-                color: MyColors.bottomNavigationUnselectedColor,
-              ),
-              activeIcon: Icon(
-                Icons.favorite,
-                color: MyColors.bottomNavigationSelectedColor,
-              ),
-              label: "Bookmark"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_outline,
-                color: MyColors.bottomNavigationUnselectedColor,
-              ),
-              activeIcon: Icon(
-                Icons.person,
-                color: MyColors.bottomNavigationSelectedColor,
-              ),
-              label: "Profile")
-        ],
-        currentIndex: _selectedIndex,
-        showUnselectedLabels: true,
-        unselectedItemColor: MyColors.bottomNavigationUnselectedColor,
-        selectedItemColor: MyColors.bottomNavigationSelectedColor,
-        elevation: 5,
-        onTap: _onItemTapped,
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.category_outlined,
+                  color: MyColors.bottomNavigationUnselectedColor,
+                ),
+                activeIcon: Icon(
+                  Icons.category_rounded,
+                  color: MyColors.bottomNavigationSelectedColor,
+                ),
+                label: "Categories"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.favorite_border,
+                  color: MyColors.bottomNavigationUnselectedColor,
+                ),
+                activeIcon: Icon(
+                  Icons.favorite,
+                  color: MyColors.bottomNavigationSelectedColor,
+                ),
+                label: "Bookmark"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person_outline,
+                  color: MyColors.bottomNavigationUnselectedColor,
+                ),
+                activeIcon: Icon(
+                  Icons.person,
+                  color: MyColors.bottomNavigationSelectedColor,
+                ),
+                label: "Profile")
+          ],
+          currentIndex: _selectedIndex,
+          showUnselectedLabels: true,
+          unselectedItemColor: MyColors.bottomNavigationUnselectedColor,
+          selectedItemColor: MyColors.bottomNavigationSelectedColor,
+          elevation: 5,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
@@ -716,7 +733,107 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
     //Navigator.push(context, MaterialPageRoute(builder: (context) => HomeBottamScreen()));
   }
-
+  static showExitConfirmation(BuildContext context) async {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    return await showModalBottomSheet(
+      elevation: 5,
+      // backgroundColor: primary,
+      shape: const RoundedRectangleBorder(
+          side: BorderSide(width: 2, color: Colors.white),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(35), topRight: Radius.circular(35))),
+      context: context,
+      builder: (context) {
+        return Container(
+          height: height * 0.45,
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35),
+                  topRight: Radius.circular(35))),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 28.0, top: 28),
+                child: InkWell(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(Icons.close)),
+              ),
+              SizedBox(height: height / 30),
+              const Center(
+                child: Text("Exit App",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+              ),
+              SizedBox(height: height*0.02),
+              const Center(
+                child: Text("Are you sure want to exit app?",
+                    style: TextStyle(
+                      color: MyColors.blackBG,
+                      fontSize: 16,
+                    )),
+              ),
+              SizedBox(height: height * 0.04),
+              Center(
+                child: SizedBox(
+                  width: width * 4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            // side:
+                            // BorderSide(width: 1, color: Colors.white),
+                            // elevation: 3,
+                              backgroundColor: MyColors.redBG,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(55)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.34,
+                                  vertical: height * 0.02)),
+                          onPressed: () {
+                            SystemNavigator.pop();
+                          },
+                          child: const Text("Yes",
+                              style: TextStyle(
+                                  color: MyColors.whiteBG,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold))),
+                      SizedBox(height: height * 0.03),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:MyColors.redBG,
+                              // side: const BorderSide(width: 1,color: tertiary),
+                              // elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(55)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.34,
+                                  vertical: height * 0.02)),
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: const Text("No",
+                              style: TextStyle(
+                                  color: MyColors.whiteBG,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold))),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    ) ??
+        false;
+  }
   Future<void> shareNetworkImage(String imageUrl, String text) async {
     setState(() {
       isLoading = true;

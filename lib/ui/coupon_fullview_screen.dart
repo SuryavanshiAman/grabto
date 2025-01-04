@@ -2701,7 +2701,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                   context, "${prebooktable.title}");
             },
             child: Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2714,7 +2714,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                           '${prebooktable.title}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                             overflow: TextOverflow.clip,
                           ),
@@ -2722,12 +2722,12 @@ class PrebookOfferListWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 8),
                   const Text(
                     'Available for limited',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: FontWeight.bold,
                       overflow: TextOverflow.clip,
                     ),
@@ -2749,7 +2749,7 @@ class PrebookOfferListWidget extends StatelessWidget {
                           '${prebooktable.available_seat} slots available',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 11,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
                             overflow: TextOverflow.clip,
                           ),
@@ -2925,7 +2925,7 @@ class RegularOfferListWidget extends StatelessWidget {
               _showBottomSheet(context, regularoffer.title);
             },
             child: Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2955,7 +2955,7 @@ class RegularOfferListWidget extends StatelessWidget {
                           regularoffer.title,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             overflow: TextOverflow.clip,
                           ),
@@ -2980,7 +2980,7 @@ class RegularOfferListWidget extends StatelessWidget {
                           'Tab to view offers',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 11,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
                             overflow: TextOverflow.clip,
                           ),

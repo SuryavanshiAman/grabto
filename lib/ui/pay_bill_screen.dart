@@ -283,7 +283,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                           ),
 
                                           Text(
-                                            "${_amountController.text}",
+                                            _amountController.text,
                                             style: const TextStyle(
                                               color: Color.fromARGB(255, 244, 229, 229),
                                               fontSize: 20,
@@ -850,19 +850,22 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
                         print(
                             "payUserBill user_id:$user_id, store_id:$store_id, regularoffer_id: $regularoffer_id, bill_amount: $bill_amount, discount_Percentage: $discount_Percentage, discount_Amount: $discount_Amount, after_Discount_Amount: $after_Discount_Amount, convenience_Fee_Parcentacge: $convenience_Fee_Parcentacge, convenience_Fee: $convenience_Fee, after_Convenience_Fee: $after_Convenience_Fee, pay_amount: $pay_amount");
-
-                        await regularPayBill(
-                            user_id,
-                            store_id,
-                            regularoffer_id,
-                            bill_amount,
-                            discount_Percentage,
-                            discount_Amount,
-                            after_Discount_Amount,
-                            convenience_Fee_Parcentacge,
-                            convenience_Fee,
-                            after_Convenience_Fee,
-                            pay_amount);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SuccessScreen(regularoffer_id,pay_amount)),
+                        );
+                        // await regularPayBill(
+                        //     user_id,
+                        //     store_id,
+                        //     regularoffer_id,
+                        //     bill_amount,
+                        //     discount_Percentage,
+                        //     discount_Amount,
+                        //     after_Discount_Amount,
+                        //     convenience_Fee_Parcentacge,
+                        //     convenience_Fee,
+                        //     after_Convenience_Fee,
+                        //     pay_amount);
 
                         setState(() {
                           isLoading = false;
@@ -1066,17 +1069,17 @@ class _PayBillScreenState extends State<PayBillScreen> {
     });
     try {
       final body = {
-        "user_id": "$user_id",
-        "store_id": "$store_id",
-        "walkin_offer_id": "$regularoffer_id",
-        "bill_amount": "$bill_amount",
-        "discount_percentage": "$discount_percentage",
-        "discount_amount": "$discount_amount",
-        "after_discount_amount": "$after_discount_amount",
-        "convenience_fee_percentage": "$convenience_fee_percentage",
-        "convenience_fee": "$convenience_fee",
-        "after_convenience_fee": "$after_convenience_fee",
-        "pay_amount": "$pay_amount",
+        "user_id": user_id,
+        "store_id": store_id,
+        "walkin_offer_id": regularoffer_id,
+        "bill_amount": bill_amount,
+        "discount_percentage": discount_percentage,
+        "discount_amount": discount_amount,
+        "after_discount_amount": after_discount_amount,
+        "convenience_fee_percentage": convenience_fee_percentage,
+        "convenience_fee": convenience_fee,
+        "after_convenience_fee": after_convenience_fee,
+        "pay_amount": pay_amount,
       };
       final response = await ApiServices.RegularPayBill(body);
       print('regularPayBill data: 2');
@@ -1101,21 +1104,21 @@ class _PayBillScreenState extends State<PayBillScreen> {
             isLoading = false;
 
             RazorpayService.startPayment(
-              orderId: '$order_id',
+              orderId: order_id,
               apiKey: '$app_key1',
               amount: amount,
-              name: '$_appName',
+              name: _appName,
               description: 'bill pay',
-              email: '$userEmail',
-              contact: '$userMobile',
+              email: userEmail,
+              contact: userMobile,
               duration: 120,
-              app_image: "$image",
+              app_image: image,
               successCallback: (PaymentSuccessResponse response) {
                 String bundle =
                     '{"razorpay_payment_id":"${response.paymentId}","razorpay_order_id":"${response.orderId}","razorpay_signature":"${response.signature}"}';
                 print('regularPayBill PaymentSuccessful::bundle $bundle');
 
-                UpdateRegularPayBill(user_id, "${response.orderId}", bundle);
+                UpdateRegularPayBill(user_id, "${response.orderId}", bundle,pay_amount);
               },
               errorCallback: (PaymentFailureResponse response) {
                 String bundle =
@@ -1123,14 +1126,14 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
                 print(
                     'regularPayBill Payment Error: ${response.code.toString()} - ${response.message}');
-                UpdateRegularPayBill(user_id, "$order_id", bundle);
+                UpdateRegularPayBill(user_id, order_id, bundle,pay_amount);
               },
               externalWalletCallback: (ExternalWalletResponse response) {
                 // Handle external wallet payments here
                 String bundle = '{"walletName":"${response.walletName}"}';
 
                 print('regularPayBill External Wallet: ${response.walletName}');
-                UpdateRegularPayBill(user_id, "$order_id", bundle);
+                UpdateRegularPayBill(user_id, order_id, bundle,pay_amount);
               },
             );
           });
@@ -1162,7 +1165,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
   }
 
   Future<void> UpdateRegularPayBill(
-      String user_id, String razorpay_order_id, String bundle) async {
+      String user_id, String razorpay_order_id, String bundle,String pay_amount) async {
     print(
         'UpdateRegularPayBill data: user_id:$user_id, razorpay_order_id:$razorpay_order_id, bundle $bundle');
     setState(() {
@@ -1171,7 +1174,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
     try {
       final body = {
         "user_id": "$userId",
-        "razorpay_order_id": "$razorpay_order_id",
+        "razorpay_order_id": razorpay_order_id,
         "bundle": bundle,
       };
       final response = await ApiServices.UpdateRegularPayBill(body);
@@ -1190,7 +1193,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
         Navigator.pop(context);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SuccessScreen("$msg")),
+          MaterialPageRoute(builder: (context) => SuccessScreen(msg,pay_amount)),
         );
 
         setState(() {
@@ -1200,7 +1203,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
         String res = response['res'];
         String msg = response['msg'];
         // Handle unsuccessful response or missing 'res' field
-        showErrorMessage(context, message: "$msg");
+        showErrorMessage(context, message: msg);
         setState(() {
           isLoading = false;
         });

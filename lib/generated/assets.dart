@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String fontsAfacadFluxRegular = 'assets/fonts/AfacadFlux-Regular.ttf';
+  static const String fontsMetropolis_light = 'assets/fonts/metropolis.light.otf';
   static const String fontsRobotoRegular = 'assets/fonts/Roboto_Regular.ttf';
   static const String fontsUbuntuBold = 'assets/fonts/Ubuntu-Bold.ttf';
   static const String fontsUbuntuBoldItalic = 'assets/fonts/Ubuntu-BoldItalic.ttf';
@@ -13,6 +14,7 @@ class Assets {
   static const String fontsUbuntuMediumItalic = 'assets/fonts/Ubuntu-MediumItalic.ttf';
   static const String fontsUbuntuRegular = 'assets/fonts/Ubuntu-Regular.ttf';
   static const String gifAnim = 'assets/gif/anim.gif';
+  static const String gifCheck = 'assets/gif/check.gif';
   static const String gifCheckIcon = 'assets/gif/check_icon.gif';
   static const String gifCheckIcon2 = 'assets/gif/check_icon2.gif';
   static const String gifCheerGif = 'assets/gif/cheer_gif.gif';
@@ -43,6 +45,7 @@ class Assets {
   static const String imagesVerticalPlaceholder = 'assets/images/vertical_placeholder.jpg';
   static const String lottieCheck = 'assets/lottie/check.json';
   static const String lottieGift = 'assets/lottie/gift.json';
+  static const String lottieSuccess = 'assets/lottie/success.json';
   static const String vectorBlank = 'assets/vector/blank.png';
   static const String vectorGoogleIcon = 'assets/vector/google_icon.png';
   static const String vectorImgBlank = 'assets/vector/img_blank.png';

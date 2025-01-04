@@ -1023,7 +1023,7 @@ String _appName = '';
                     '{"razorpay_payment_id":"${response.paymentId}","razorpay_order_id":"${response.orderId}","razorpay_signature":"${response.signature}"}';
                 print('TablePayBill PaymentSuccessful::bundle $bundle');
 
-                UpdateTablePayBill(user_id, "${response.orderId}", bundle);
+                UpdateTablePayBill(user_id, "${response.orderId}", bundle,"$pay_amount");
               },
               errorCallback: (PaymentFailureResponse response) {
                 String bundle =
@@ -1031,14 +1031,14 @@ String _appName = '';
 
                 print(
                     'TablePayBill Payment Error: ${response.code.toString()} - ${response.message}');
-                UpdateTablePayBill(user_id, "$order_id", bundle);
+                UpdateTablePayBill(user_id, "$order_id", bundle,"$pay_amount");
               },
               externalWalletCallback: (ExternalWalletResponse response) {
                 // Handle external wallet payments here
                 String bundle = '{"walletName":"${response.walletName}"}';
 
                 print('TablePayBill External Wallet: ${response.walletName}');
-                UpdateTablePayBill(user_id, "$order_id", bundle);
+                UpdateTablePayBill(user_id, "$order_id", bundle,"$pay_amount");
               },
             );
           });
@@ -1070,7 +1070,7 @@ String _appName = '';
   }
 
   Future<void> UpdateTablePayBill(
-      String user_id, String razorpay_order_id, String bundle) async {
+      String user_id, String razorpay_order_id, String bundle,String pay_amount) async {
     print(
         'UpdateTablePayBill data: user_id:$user_id, razorpay_order_id:$razorpay_order_id, bundle $bundle');
     setState(() {
@@ -1098,7 +1098,7 @@ String _appName = '';
         Navigator.pop(context);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SuccessScreen("$msg")),
+          MaterialPageRoute(builder: (context) => SuccessScreen("$msg","$pay_amount")),
         );
 
         setState(() {

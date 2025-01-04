@@ -1,16 +1,23 @@
+import 'package:discount_deals/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_deals/theme/theme.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 
 
 class SuccessScreen extends StatelessWidget {
   String msg = "";
+  String payment="";
 
-  SuccessScreen(this.msg);
+  SuccessScreen(this.msg,this.payment, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+
+    // Format the current date and time
+    String formattedDate = DateFormat('MMMM,dd,yyy HH:mm a').format(now);
     return Scaffold(
       backgroundColor: Colors.white,
       // appBar: AppBar(
@@ -19,45 +26,66 @@ class SuccessScreen extends StatelessWidget {
       // ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
+            const SizedBox(height: 50),
             Center(
               child: Container(
-                width: 180,
-                height: 180,
-                child: Lottie.asset('assets/lottie/check.json'),
+                width: 250,
+                height: 250,
+                // color: Colors.red,
+                child: Lottie.asset('assets/lottie/success.json',fit: BoxFit.fill,),
               ),
               // ),
             ),
-            SizedBox(height: 20),
+            // const SizedBox(height: 20),
+            Text(
+              '₹$payment',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
             SizedBox(
               // height: 200,
               width: 300,
               child: Text(
                 '$msg!',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
+              'Bill amunt paid on $formattedDate ',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
               'Thank you for your using.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                // Navigator.pop(context);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
                 // Navigate to another screen or perform any action
               },
-              child: Text(
+              child: const Text(
                 'Continue',
                 style: TextStyle(color: Colors.white),
               ),
