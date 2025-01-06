@@ -411,22 +411,6 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 ),
                               ),
                             ),
-                          // if (_isAmountEntered)
-                          // Positioned.fill(
-                          //   child: Align(
-                          //     alignment: Alignment.center,
-                          //     child: AnimatedOpacity(
-                          //       opacity: _isAmountEntered ? 1.0 : 0.0,
-                          //       duration: Duration(milliseconds: 300),
-                          //       child: Lottie.asset(
-                          //         'assets/gif/cheer_up_anim.json', // Path to your Lottie JSON file
-                          //         width: 100, // Adjust size as needed
-                          //         height: 100,
-                          //         fit: BoxFit.contain,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
 
                         ],
                       ),
@@ -559,97 +543,6 @@ class _PayBillScreenState extends State<PayBillScreen> {
                     ),
                     const SizedBox(height: 20,),
 
-
-                    // Padding(
-                    //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                    //   child: Text(
-                    //     'Additional Offers',
-                    //     style: TextStyle(
-                    //       fontSize: 18,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
-                    // InkWell(
-                    //   onTap: (){
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(builder: (context) => ApplyVoucherScreen()),
-                    //     );
-                    //   },
-                    //   child: Container(
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       border: Border.all(color: Colors.grey, width: 1.0),
-                    //       borderRadius: BorderRadius.circular(20),
-                    //     ),
-                    //     padding: const EdgeInsets.only(
-                    //         left: 16, right: 16, top: 10, bottom: 10),
-                    //     child: Row(
-                    //       crossAxisAlignment: CrossAxisAlignment.center,
-                    //       children: [
-                    //         Expanded(
-                    //           child: Column(
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               // Title with text wrapping
-                    //               Text(
-                    //                 "Apply coupons & Bank offers",
-                    //                 style: TextStyle(
-                    //                   fontSize: 15,
-                    //                   fontWeight: FontWeight.bold,
-                    //                 ),
-                    //               ),
-                    //               SizedBox(height: 5),
-                    //               // Spacing between title and booking fee
-                    //               Row(
-                    //                 crossAxisAlignment: CrossAxisAlignment.center,
-                    //                 children: [
-                    //                   ClipRect(
-                    //                     child: Container(
-                    //                       height: 40, // Set your desired height
-                    //                       width: 40, // Set your desired width
-                    //                       child: Image.asset(
-                    //                         'assets/images/exclusive_img.png',
-                    //                         fit: BoxFit
-                    //                             .cover, // Optional: Adjust the fit as needed
-                    //                       ),
-                    //                     ),
-                    //                   ),
-                    //                   SizedBox(width: 10),
-                    //                   // Spacing between booking fee and available seats
-                    //                   // Available seats text with text wrapping
-                    //                   Expanded(
-                    //                     child: Text(
-                    //                       'Up to 15% off with HDFC Bank Credit Cards',
-                    //                       maxLines: 2,
-                    //                       // Maximum number of lines for the text
-                    //                       overflow: TextOverflow.ellipsis,
-                    //                       // Shows ellipsis if text exceeds maxLines
-                    //                       style: TextStyle(
-                    //                         fontSize: 14,
-                    //                         color: Colors.black87,
-                    //                       ),
-                    //                     ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         // Right-side icon
-                    //         Icon(
-                    //           Icons.arrow_forward_ios, // Icon of your choice
-                    //           size: 18,
-                    //           color: Colors.black87, // Color of the icon
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: 20,
-                    // ),
                     if(billamount!=null)
                       const Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
@@ -850,22 +743,19 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
                         print(
                             "payUserBill user_id:$user_id, store_id:$store_id, regularoffer_id: $regularoffer_id, bill_amount: $bill_amount, discount_Percentage: $discount_Percentage, discount_Amount: $discount_Amount, after_Discount_Amount: $after_Discount_Amount, convenience_Fee_Parcentacge: $convenience_Fee_Parcentacge, convenience_Fee: $convenience_Fee, after_Convenience_Fee: $after_Convenience_Fee, pay_amount: $pay_amount");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SuccessScreen(regularoffer_id,pay_amount)),
-                        );
-                        // await regularPayBill(
-                        //     user_id,
-                        //     store_id,
-                        //     regularoffer_id,
-                        //     bill_amount,
-                        //     discount_Percentage,
-                        //     discount_Amount,
-                        //     after_Discount_Amount,
-                        //     convenience_Fee_Parcentacge,
-                        //     convenience_Fee,
-                        //     after_Convenience_Fee,
-                        //     pay_amount);
+                   print("😊😊");
+                        await regularPayBill(
+                            user_id,
+                            store_id,
+                            regularoffer_id,
+                            bill_amount,
+                            discount_Percentage,
+                            discount_Amount,
+                            after_Discount_Amount,
+                            convenience_Fee_Parcentacge,
+                            convenience_Fee,
+                            after_Convenience_Fee,
+                            pay_amount);
 
                         setState(() {
                           isLoading = false;
@@ -902,96 +792,6 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
       ),
 
-      // bottomNavigationBar: Container(
-      //   padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
-      //   decoration: BoxDecoration(
-      //     color: Colors.white,
-      //     borderRadius: BorderRadius.only(
-      //       topLeft: Radius.circular(16),
-      //       topRight: Radius.circular(16),
-      //     ),
-      //   ),
-      //   child: Padding(
-      //     padding: const EdgeInsets.symmetric(vertical: 10),
-      //     child: ElevatedButton(
-      //       onPressed: isLoading
-      //             ? null
-      //             : () async{
-
-      //               if(billamount==null){
-
-
-      //                 billDetails();
-
-      //                   if (_isAmountEntered && !_isGifShown) {
-      //                     Future.delayed(Duration(seconds: 3), () {
-      //                       setState(() {
-      //                         _isGifShown = true; // Mark that the GIF has been shown
-      //                       });
-      //                     });
-      //                   }
-
-      //               }else{
-
-      //                 setState(() {
-      //                   isLoading = true;
-      //                 });
-
-      //                 String user_id = "$userId";
-      //                 String store_id = widget.regularoffer.store_id;
-      //                 String regularoffer_id = "${widget.regularoffer.id}";
-
-      //                 String bill_amount = "$billamount";
-      //                 String discount_Percentage = "$discountPercentage";
-      //                 String discount_Amount = "$discountAmount";
-      //                 String after_Discount_Amount = "$afterDiscountAmount";
-      //                 String convenience_Fee_Parcentacge = "$convenienceFeeParcentacge";
-      //                 String convenience_Fee = "$convenienceFee";
-      //                 String after_Convenience_Fee = "$afterConvenienceFee";
-
-      //                 String pay_amount = "$payamount";
-
-      //                 print(
-      //                     "payUserBill user_id:$user_id, store_id:$store_id, regularoffer_id: $regularoffer_id, bill_amount: $bill_amount, discount_Percentage: $discount_Percentage, discount_Amount: $discount_Amount, after_Discount_Amount: $after_Discount_Amount, convenience_Fee_Parcentacge: $convenience_Fee_Parcentacge, convenience_Fee: $convenience_Fee, after_Convenience_Fee: $after_Convenience_Fee, pay_amount: $pay_amount");
-
-      //                 await regularPayBill(
-      //                     user_id,
-      //                     store_id,
-      //                     regularoffer_id,
-      //                     bill_amount,
-      //                     discount_Percentage,
-      //                     discount_Amount,
-      //                     after_Discount_Amount,
-      //                     convenience_Fee_Parcentacge,
-      //                     convenience_Fee,
-      //                     after_Convenience_Fee,
-      //                     pay_amount);
-
-      //                 setState(() {
-      //                   isLoading = false;
-      //                 });
-
-      //               }
-      //       },
-      //       style: ElevatedButton.styleFrom(
-      //         backgroundColor: MyColors.primaryColor,
-      //         shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(12),
-      //         ),
-      //       ),
-      //       child: isLoading
-      //             ? CircularProgressIndicator(color: MyColors.primaryColor)
-      //             : Text(
-      //        billamount==null?"Next" :"Proceed to pay \u{20B9}$payamount",
-      //         style: TextStyle(
-      //           color: Colors.white,
-      //           fontWeight: FontWeight.bold,
-      //           fontSize: 17,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 
@@ -1082,7 +882,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
         "pay_amount": pay_amount,
       };
       final response = await ApiServices.RegularPayBill(body);
-      print('regularPayBill data: 2');
+      print('🪙🪙regularPayBill data: 2');
       if (response != null &&
           response.containsKey('res') &&
           response['res'] == 'success') {
@@ -1102,7 +902,7 @@ class _PayBillScreenState extends State<PayBillScreen> {
 
           setState(() async {
             isLoading = false;
-
+print("🙉🙉🙉");
             RazorpayService.startPayment(
               orderId: order_id,
               apiKey: '$app_key1',
@@ -1187,8 +987,6 @@ class _PayBillScreenState extends State<PayBillScreen> {
         final data = response['data'];
 
         print("UpdateRegularPayBill data:  : data: $data");
-
-
 
         Navigator.pop(context);
         Navigator.push(

@@ -46,7 +46,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
           ),
           bottom: TabBar(
             tabs: [
-              Tab(text: 'Book Table'),
+              Tab(text: 'Booking Table'),
               Tab(text: 'Pay Bill'),
             ],
             padding: EdgeInsets.all(10),

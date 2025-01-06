@@ -26,15 +26,12 @@ class SuccessScreen extends StatelessWidget {
       // ),
       body: Center(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
-            const SizedBox(height: 50),
+             SizedBox(height: MediaQuery.sizeOf(context).height*0.13),
             Center(
-              child: Container(
+              child: SizedBox(
                 width: 250,
                 height: 250,
-                // color: Colors.red,
                 child: Lottie.asset('assets/lottie/success.json',fit: BoxFit.fill,),
               ),
               // ),
@@ -65,7 +62,7 @@ class SuccessScreen extends StatelessWidget {
             Text(
               'Bill amunt paid on $formattedDate ',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
               ),
@@ -85,12 +82,12 @@ class SuccessScreen extends StatelessWidget {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
                 // Navigate to another screen or perform any action
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+              ),
               child: const Text(
                 'Continue',
                 style: TextStyle(color: Colors.white),
-              ),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
               ),
             ),
           ],

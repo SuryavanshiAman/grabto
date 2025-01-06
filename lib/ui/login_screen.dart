@@ -224,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
         showErrorMessage(context, message: msg);
         print("Aman");
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => SignupScreen()));
+            MaterialPageRoute(builder: (context) => SignupScreen(mobile:mobile)));
         // Handle unsuccessful response or missing 'res' field
 
       }
