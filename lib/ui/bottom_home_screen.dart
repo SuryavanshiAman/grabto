@@ -634,7 +634,7 @@ class _HomeBottamScreenState extends State<HomeBottamScreen> with WidgetsBinding
                 // ),
                 if(prebookofferlistHistory.isNotEmpty)
                   Container(
-                    height: 270,
+                    height: 300,
                     child: _buildOfferCard(prebookofferlistHistory),
                   ),
 

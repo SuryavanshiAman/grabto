@@ -1151,7 +1151,25 @@ class ApiServices {
       return null;
     }
   }
-  
+  static Future<Map<String, dynamic>?> availableSeats(
+      BuildContext context, Map body) async {
+    const url = '$BASE_URL/GetAvailableSeats';
+    final uri = Uri.parse(url);
+    final response = await http.post(uri, body: body);
+
+    if (response.statusCode == 200) {
+      // Parse th4e JSON resp  print("😓😓😓");onse
+      print("🙉🙉");
+      final jsonResponse = json.decode(response.body);
+      // Print the entire response
+      print("🙉🙉$jsonResponse");
+      print('available response: $jsonResponse');
+
+      return jsonResponse;
+    } else {
+      return null;
+    }
+  }
     static Future<Map<String, dynamic>?> ConveinceFee() async {
     const url = '$BASE_URL/ConveinceFee';
     final uri = Uri.parse(url);

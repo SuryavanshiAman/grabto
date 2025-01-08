@@ -1,7 +1,9 @@
 import 'package:discount_deals/model/pre_book_table_model.dart';
+import 'package:discount_deals/model/user_model.dart';
 import 'package:discount_deals/services/api_services.dart';
 import 'package:discount_deals/theme/theme.dart';
 import 'package:discount_deals/ui/confirm_booking_screen.dart';
+import 'package:discount_deals/utils/snackbar_helper.dart';
 import 'package:discount_deals/utils/time_slot.dart';
 import 'package:discount_deals/widget/offer_term_condtion.dart';
 import 'package:discount_deals/model/terms_condition_model.dart';
@@ -30,6 +32,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
 
   int intervalInMinutes = 30;
   String startLunch = "";
+  int availableSeat=0;
   String endLunch = "06:00 PM";
   late List<String> timeSlotsLunch = [];
   String startDinner = "06:00 PM";
@@ -42,6 +45,8 @@ class _BookTableScreenState extends State<BookTableScreen> {
   List<TermConditionModel> termConditionList = [];
 
   void _updateSelectedDate(DateTime date) {
+    print(":AMan:$date");
+    availableSeates(widget.store_id,date);
     setState(() {
       _selectedDate = date;
       // Format the date to "yyyy-MM-dd" format
@@ -52,6 +57,37 @@ class _BookTableScreenState extends State<BookTableScreen> {
         generateTimeSlots(
             startDinner, endDinner, intervalInMinutes, _selectedDate);
     checkTimeSlotsVisibility(_selectedDate);
+  }
+  Future<void> availableSeates(String storeId,dynamic date) async {
+    print("😓😓😓");
+    print("$storeId");
+    print("$date");
+    print("😓😓😓");
+    try {
+      final body = {
+        "store_id":storeId,
+        "booking_date":date.toString()
+      };
+      final response = await ApiServices.availableSeats(context, body);
+      print("😓😓😓${response!['data']}");
+      if (response['error'] == false) {
+        final data = response['data'];
+        print("wwwwwwAman:$data");
+        setState(() {
+          availableSeat=response['data'];
+        });
+        print("wwwwwwAman:$availableSeat");
+      } else {
+        String msg = response['message'];
+
+        // Handle unsuccessful response or missing 'res' field
+        showErrorMessage(context, message: msg);
+      }
+    } catch (e) {
+      //print('verify_otp error: $e');
+      // Handle error
+      showErrorMessage(context, message: 'An error occurred: $e');
+    } finally {}
   }
 
   void _updateSelectedNumber(int number) {
@@ -72,41 +108,6 @@ class _BookTableScreenState extends State<BookTableScreen> {
     });
   }
 
-  // void checkTimeSlotsVisibility(DateTime selectedDate) {
-  //   final now = DateTime.now();
-  //   print(
-  //       'checkTimeSlotsVisibility Current Time: ${DateFormat.jm().format(now)}');
-
-  //   // Format the current time for comparison
-  //   String timeToCheck = DateFormat.jm().format(now);
-  //   print('checkTimeSlotsVisibility Time to Check: $timeToCheck');
-
-  //   bool isTimeInRange(String time, String start, String end) {
-  //     // Handle cases where the end time is on the next day
-  //     if (end.compareTo(start) < 0) {
-  //       // When the end time is less than the start time, it indicates it goes past midnight
-  //       print(
-  //           'checkTimeSlotsVisibility End time goes past midnight. Checking: $time against start: $start and end: $end');
-  //       return (time.compareTo(start) >= 0 || time.compareTo(end) < 0);
-  //     } else {
-  //       // Normal case, both times are on the same day
-  //       print(
-  //           'checkTimeSlotsVisibility Normal case. Checking: $time against start: $start and end: $end');
-  //       return (time.compareTo(start) >= 0 && time.compareTo(end) < 0);
-  //     }
-  //   }
-
-  //   // Check lunch and dinner visibility
-  //   isLunchTimeSlotsVisible = !isTimeInRange(timeToCheck, startLunch, endLunch);
-  //   isDinnerTimeSlotsVisible =
-  //       !isTimeInRange(timeToCheck, startDinner, endDinner);
-
-  //   // Log the results of the visibility checks
-  //   print(
-  //       'checkTimeSlotsVisibility Lunch Time Slots Visible: $isLunchTimeSlotsVisible');
-  //   print(
-  //       'checkTimeSlotsVisibility Dinner Time Slots Visible: $isDinnerTimeSlotsVisible');
-  // }
   void checkTimeSlotsVisibility(DateTime selectedDate) {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -173,7 +174,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
 
     // Dinner start time ko parse karna DateTime object mein
     DateTime endDinnerTime = DateFormat("hh:mm a").parse(endDinner);
-
+    availableSeates(widget.store_id,DateFormat('yyyy-MM-dd').format(now));
     // Us time ko current date ke saath set karna
     endDinnerTime = DateTime(
         now.year, now.month, now.day, endDinnerTime.hour, endDinnerTime.minute);
@@ -734,6 +735,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                                 "Selected Item: ${selectedPreBookOffer
                                     ?.title}");
                           },
+                          availableSeat:availableSeat,
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 0, 10),
@@ -774,7 +776,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
           child: ElevatedButton(
             onPressed:
-            (selectedTimeSlot != null && selectedPreBookOffer != null)
+            (selectedTimeSlot != null && selectedPreBookOffer != null )
                 ? () {
               String guest = "$_selectedGuestNumber";
               String visitingdate =
@@ -786,18 +788,22 @@ class _BookTableScreenState extends State<BookTableScreen> {
                 "Proceed clicked - timetype: $timetype2,  Guest: $guest, Date: $visitingdate, Time: $visitingtime, Offer ID: ${selectedPreBookOffer!
                     .id}",
               );
+if(_selectedGuestNumber>availableSeat){
+  showErrorMessage(context, message: 'There is not a sufficient seats');
+}else{
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) =>
+            ConfirmBookingScreen(
+                guest,
+                visitingdate,
+                visitingtime,
+                timetype!,
+                selectedPreBookOffer!)),
+  );
+}
 
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ConfirmBookingScreen(
-                            guest,
-                            visitingdate,
-                            visitingtime,
-                            timetype!,
-                            selectedPreBookOffer!)),
-              );
             }
                 : null, // Disable button if either is null
             style: ElevatedButton.styleFrom(
@@ -908,13 +914,13 @@ class TimeSlotCard extends StatelessWidget {
 class BookingInfoCard extends StatelessWidget {
   final String title;
   final String bookingFee;
-  final String availableSeats;
+  final int availableSeat;
 
   const BookingInfoCard({
     Key? key,
     required this.title,
     required this.bookingFee,
-    required this.availableSeats,
+    required this.availableSeat,
   }) : super(key: key);
 
   @override
@@ -957,7 +963,7 @@ class BookingInfoCard extends StatelessWidget {
         //   ),
         // )
         Text(
-          '${(int.tryParse(availableSeats) ?? 0) < 0 ? 0 : int.tryParse(availableSeats)} seat${(int.tryParse(availableSeats) ?? 0) != 1 ? 's' : ''} left',
+          '${(int.tryParse(availableSeat.toString()) ?? 0) < 0 ? 0 : int.tryParse(availableSeat.toString())} seat${(int.tryParse(availableSeat.toString()) ?? 0) != 1 ? 's' : ''} left',
           style: TextStyle(
             fontSize: 14,
             color: Colors.green,
@@ -972,12 +978,14 @@ class BookingInfoCard extends StatelessWidget {
 class PrebookOfferListWidget extends StatefulWidget {
   final String storeId;
   final List<PreBookTable> prebookofferlist;
-  final ValueChanged<PreBookTable?> onSelectedItemChanged; // Callback function
+  final ValueChanged<PreBookTable?> onSelectedItemChanged;
+  final int availableSeat;// Callback function
 
   PrebookOfferListWidget({
     required this.storeId,
     required this.prebookofferlist,
     required this.onSelectedItemChanged,
+    required this.availableSeat,
   });
 
   @override
@@ -1058,7 +1066,7 @@ class _PrebookOfferListWidgetState extends State<PrebookOfferListWidget> {
             child: BookingInfoCard(
               title: prebooktable.title,
               bookingFee: prebooktable.booking_fee,
-              availableSeats: prebooktable.available_seat,
+              availableSeat:widget.availableSeat,
             ),
           ),
         ],
