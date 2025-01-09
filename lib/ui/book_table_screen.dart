@@ -61,12 +61,12 @@ class _BookTableScreenState extends State<BookTableScreen> {
   Future<void> availableSeates(String storeId,dynamic date) async {
     print("😓😓😓");
     print("$storeId");
-    print("$date");
+    print("${DateFormat('yyyy-MM-dd').format(date)}");
     print("😓😓😓");
     try {
       final body = {
         "store_id":storeId,
-        "booking_date":date.toString()
+        "booking_date":DateFormat('yyyy-MM-dd').format(date).toString()
       };
       final response = await ApiServices.availableSeats(context, body);
       print("😓😓😓${response!['data']}");
@@ -171,10 +171,9 @@ class _BookTableScreenState extends State<BookTableScreen> {
 
 
     DateTime now = DateTime.now();
-
-    // Dinner start time ko parse karna DateTime object mein
     DateTime endDinnerTime = DateFormat("hh:mm a").parse(endDinner);
-    availableSeates(widget.store_id,DateFormat('yyyy-MM-dd').format(now));
+    print("💕💕💕💕$now");
+    availableSeates(widget.store_id,now);
     // Us time ko current date ke saath set karna
     endDinnerTime = DateTime(
         now.year, now.month, now.day, endDinnerTime.hour, endDinnerTime.minute);

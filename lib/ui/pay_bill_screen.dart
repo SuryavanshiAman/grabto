@@ -403,11 +403,12 @@ class _PayBillScreenState extends State<PayBillScreen> {
                                 child: AnimatedOpacity(
                                   opacity: _isAmountEntered ? 1.0 : 0.0,
                                   duration: const Duration(milliseconds: 300),
-                                  child: Image.asset(
-                                    'assets/gif/cheer_gif.gif', // Use the path to your GIF here
-                                    width:300, // Adjust size as needed
-                                    height: 300,
-                                  ),
+                                  child:Lottie.asset("assets/lottie/confetti.json")
+                                  // Image.asset(
+                                  //   'assets/gif/birthday.gif', // Use the path to your GIF here
+                                  //   width:300, // Adjust size as needed
+                                  //   height: 300,
+                                  // ),
                                 ),
                               ),
                             ),
