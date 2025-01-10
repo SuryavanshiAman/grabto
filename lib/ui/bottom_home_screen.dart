@@ -1434,7 +1434,7 @@ class _HomeBottamScreenState extends State<HomeBottamScreen> with WidgetsBinding
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
                   padding: EdgeInsets.all(12.0),
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -1451,36 +1451,6 @@ class _HomeBottamScreenState extends State<HomeBottamScreen> with WidgetsBinding
                   ),
                   child: Column(
                     children: [
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //   children: [
-                      //     TitleDescriptionWidget(
-                      //       title: offer.store_name,
-                      //       description: offer.address,
-                      //       titleFontSize: 16,
-                      //       descriptionFontSize: 13,
-                      //     ),
-                      //     Row(
-                      //       children: [
-                      //         if(offer.mobile.isNotEmpty)
-                      //           GestureDetector(
-                      //             onTap: () {
-                      //               _makePhoneCall(offer.mobile);
-                      //             },
-                      //             child: _buildIcon(Icons.phone),
-                      //           ),
-                      //         if(offer.map_link.isNotEmpty)
-                      //           GestureDetector(
-                      //             onTap: () {
-                      //               _launchMaps(context, offer.map_link);
-                      //             },
-                      //             child: _buildIcon(Icons.location_on),
-                      //           ),
-                      //
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
                       Row(
                         children: [
                           // Left side: Title and Description
@@ -1589,6 +1559,14 @@ class _HomeBottamScreenState extends State<HomeBottamScreen> with WidgetsBinding
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TablePaybillScreen(
+                                              offer, offer.store_name,
+                                              offer.address)),
+                                );
                                 if (isBookingTimePassed(
                                     offer.booking_date, offer.booking_time)) {
                                   Navigator.push(

@@ -38,27 +38,21 @@ class _TransactionScreenState extends State<TransactionScreen> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.arrow_back_ios)),
+              child: const Icon(Icons.arrow_back_ios)),
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "Transaction",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
-              Tab(text: 'Booking Table'),
+              Tab(text: 'Booking'),
               Tab(text: 'Pay Bill'),
             ],
             padding: EdgeInsets.all(10),
-            // indicator: BoxDecoration(
-            //   color: MyColors.primaryColor, // Color of the indicator
-            //   borderRadius: BorderRadius.circular(50.0), // Rounded corners
-            // ),
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: MyColors.primaryColor,
-            // Set the indicator color
             labelColor: MyColors.primaryColor,
-            // Set the color of the active tab text
             unselectedLabelColor:
             Colors.grey, // Set the color of the inactive tab text
           ),
@@ -118,7 +112,7 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     if (isLoading) {
       // Show loading indicator when data is loading
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(
           color: MyColors.primaryColor,
         ),
@@ -195,8 +189,8 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
           height: 180,
           child: Image.asset('assets/vector/blank.png'),
         ),
-        SizedBox(height: 16),
-        Text(
+        const SizedBox(height: 16),
+        const Text(
           'No Data',
           style: TextStyle(
             fontSize: 18,
@@ -209,7 +203,7 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
 
   Widget _buildOrderCard(PreBookTableHistoryModel preBookTableHistory) {
     return Card(
-      color: Color.fromARGB(255, 255, 255, 255),
+      color: const Color.fromARGB(255, 255, 255, 255),
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       elevation: 4,
       child: Padding(
@@ -226,19 +220,19 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                     children: [
                       Text(
                         preBookTableHistory.store_name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text('Offer: ${preBookTableHistory.title}'),
                       Text("Table booked for ${preBookTableHistory
                           .booking_date}, ${preBookTableHistory
                           .booking_time}, ${preBookTableHistory
                           .no_of_guest} Guest's"),
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         "Bill Details",
                         style: TextStyle(
                           fontSize: 14,
@@ -250,15 +244,15 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                         children: [
                           Text(
                             "${preBookTableHistory.no_of_guest} Guest's: ",
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                           Text(
                             "₹${preBookTableHistory.amount}",
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [
@@ -275,17 +269,17 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "GST 18% : ",
                             style: TextStyle(fontSize: 12),
                           ),
                           Text(
                             "₹${preBookTableHistory.gst_amount}",
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       DottedLine(
                         height: 2,
                         color: Colors.black,
@@ -293,11 +287,11 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                         dashWidth: 6.0,
                         dashSpacing: 6.0,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Total Price: ',
                             style: TextStyle(
                               fontSize: 13,
@@ -306,7 +300,7 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                           ),
                           Text(
                             "₹${preBookTableHistory.pay_amount}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -317,19 +311,19 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                   ),
                 ),
                 // Image
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Column(
                   children: [
                     Text(
                       "${preBookTableHistory.table_status}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: MyColors.offerCardColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 15),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     SizedBox(
@@ -342,11 +336,11 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                           placeholder: (context, url) =>
                               Container(
                                 color: Colors.grey.shade300,
-                                child: Center(
+                                child: const Center(
                                     child: CircularProgressIndicator()),
                               ),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              const Icon(Icons.error),
                         ),
                       ),
                     ),
@@ -355,7 +349,7 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                 ),
               ],
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             GestureDetector(
               onTap: () {
                 // Handle your tap event here
@@ -370,7 +364,7 @@ class _BookTabState extends State<BookTab> with SingleTickerProviderStateMixin {
                   ),
                 );
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
@@ -428,17 +422,17 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios),
+          child: const Icon(Icons.arrow_back_ios),
         ),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Table Pay Bill Details",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
       body: isLoading ?
       // Show loading indicator when data is loading
-      Center(
+      const Center(
         child: CircularProgressIndicator(
           color: MyColors.primaryColor,
         ),
@@ -466,14 +460,14 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                           children: [
                             Text(
                               widget.preBookTableHistory.store_name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
                               ""+widget.preBookTableHistory.table_status,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: MyColors.offerCardColor,
@@ -481,7 +475,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -500,7 +494,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                               ),
                             ),
                             // Image
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Column(
@@ -515,11 +509,11 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                                       placeholder: (context, url) =>
                                           Container(
                                             color: Colors.grey.shade300,
-                                            child: Center(
+                                            child: const Center(
                                                 child: CircularProgressIndicator()),
                                           ),
                                       errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
+                                          const Icon(Icons.error),
                                     ),
                                   ),
                                 ),
@@ -534,7 +528,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                 ),
 
                 // Card 2: Bill Details
-                SizedBox(height: 16), // Add some space between cards
+                const SizedBox(height: 16), // Add some space between cards
                 Card(
                   elevation: 4,
                   color: Colors.white,
@@ -549,7 +543,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               "Table Booking Details",
                               style: TextStyle(
                                 fontSize: 18,
@@ -558,7 +552,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                             ),
                             Text(
                               ""+widget.preBookTableHistory.payment_status,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: MyColors.offerCardColor,
@@ -567,36 +561,36 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                           ],
                         ),
 
-                        SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               "${widget.preBookTableHistory
                                   .no_of_guest} Guest's: ",
-                              style: TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 12),
                             ),
                             Text(
                               "₹${widget.preBookTableHistory.amount}",
-                              style: TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               "GST 18% : ",
                               style: TextStyle(fontSize: 12),
                             ),
                             Text(
                               "₹${widget.preBookTableHistory.gst_amount}",
-                              style: TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         DottedLine(
                           height: 2,
                           color: Colors.black,
@@ -604,11 +598,11 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                           dashWidth: 6.0,
                           dashSpacing: 6.0,
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Total Price: ',
                               style: TextStyle(
                                 fontSize: 13,
@@ -617,7 +611,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                             ),
                             Text(
                               "₹${widget.preBookTableHistory.pay_amount}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -630,9 +624,9 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                 ),
 
                 // Card 3: Payment Details
-                SizedBox(height: 16), // Add some space between cards
+                const SizedBox(height: 16), // Add some space between cards
                 // Card 3: Payment Details
-                SizedBox(height: 16), // Add some space between cards
+                const SizedBox(height: 16), // Add some space between cards
                 if(tablePayBillHistoryModel != null)
                   Card(
                     elevation: 4,
@@ -648,7 +642,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Pay Bill Details",
                                 style: TextStyle(
                                   fontSize: 18,
@@ -657,7 +651,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                               ),
                               Text(
                                 "${tablePayBillHistoryModel?.payment_status ?? ''}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: MyColors.offerCardColor,
@@ -666,51 +660,51 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                             ],
                           ),
 
-                          SizedBox(height: 12),
+                          const SizedBox(height: 12),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Bill Amount:",
                                 style: TextStyle(fontSize: 12),
                               ),
                               Text(
                                 "₹${tablePayBillHistoryModel?.bill_amount ?? 0}",
                                 // Use null-aware operator to handle null
-                                style: TextStyle(fontSize: 12),
+                                style: const TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Discount: ",
                                 style: TextStyle(fontSize: 12),
                               ),
                               Text(
                                 "- ₹${tablePayBillHistoryModel?.discount_amount ??
                                     0}", // Use null-aware operator to handle null
-                                style: TextStyle(fontSize: 12),
+                                style: const TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Convenience Fee: ",
                                 style: TextStyle(fontSize: 12),
                               ),
                               Text(
                                 "₹${tablePayBillHistoryModel?.convineince_fee ??
                                     0}", // Use null-aware operator to handle null
-                                style: TextStyle(fontSize: 12),
+                                style: const TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           DottedLine(
                             height: 2,
                             color: Colors.black,
@@ -718,11 +712,11 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                             dashWidth: 6.0,
                             dashSpacing: 6.0,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Total Price: ',
                                 style: TextStyle(
                                   fontSize: 13,
@@ -732,7 +726,7 @@ class _TablePayBillHistoryState extends State<TablePayBillHistory> {
                               Text(
                                 "₹${tablePayBillHistoryModel?.pay_amount ?? 0}",
                                 // Use null-aware operator to handle null
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -833,7 +827,7 @@ class _PayBillTabState extends State<PayBillTab>
   Widget build(BuildContext context) {
     if (isLoading) {
       // Show loading indicator when data is loading
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(
           color: MyColors.primaryColor,
         ),
@@ -911,8 +905,8 @@ class _PayBillTabState extends State<PayBillTab>
           height: 180,
           child: Image.asset('assets/vector/blank.png'),
         ),
-        SizedBox(height: 16),
-        Text(
+        const SizedBox(height: 16),
+        const Text(
           'No Data',
           style: TextStyle(
             fontSize: 18,
@@ -938,7 +932,7 @@ class _PayBillTabState extends State<PayBillTab>
               children: [
                 Text(
                   "#${regularOffer.razorpay_order_id}",
-                  style: TextStyle(fontWeight: FontWeight.w500,
+                  style: const TextStyle(fontWeight: FontWeight.w500,
                       fontSize: 12,
                       color: Colors.red),
                 ),
@@ -954,12 +948,12 @@ class _PayBillTabState extends State<PayBillTab>
                     children: [
                       Text(
                         '${regularOffer.store_name}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text('Offer: ${regularOffer.title}'),
 
                       Row(
@@ -967,13 +961,13 @@ class _PayBillTabState extends State<PayBillTab>
                         children: [
                           Text(
                             "Date: ${formatDateTime(regularOffer.date)}",
-                            style: TextStyle(fontWeight: FontWeight.bold,
+                            style: const TextStyle(fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         "Bill Details",
                         style: TextStyle(
                           fontSize: 14,
@@ -983,44 +977,44 @@ class _PayBillTabState extends State<PayBillTab>
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Total bill: ",
                             style: TextStyle(fontSize: 12),
                           ),
                           Text(
                             "₹${regularOffer.bill_amount}",
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Discount amount: ",
                             style: TextStyle(fontSize: 12),
                           ),
                           Text(
                             "- ₹${regularOffer.discount_amount}",
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Convenience Fee: ",
                             style: TextStyle(fontSize: 12),
                           ),
                           Text(
                             "₹${regularOffer.convenience_fee}",
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       DottedLine(
                         height: 2,
                         color: Colors.black,
@@ -1028,11 +1022,11 @@ class _PayBillTabState extends State<PayBillTab>
                         dashWidth: 6.0,
                         dashSpacing: 6.0,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Pay amount: ',
                             style: TextStyle(
                               fontSize: 13,
@@ -1041,7 +1035,7 @@ class _PayBillTabState extends State<PayBillTab>
                           ),
                           Text(
                             "₹${regularOffer.pay_amount}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -1052,17 +1046,17 @@ class _PayBillTabState extends State<PayBillTab>
                   ),
                 ),
                 // Image
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Column(
                   children: [
                     Text(
                       "${regularOffer.payment_status}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 84, 235, 9)
+                          color: Color.fromARGB(255, 84, 235, 9)
                       ),
                     ),
 
@@ -1076,11 +1070,11 @@ class _PayBillTabState extends State<PayBillTab>
                           placeholder: (context, url) =>
                               Container(
                                 color: Colors.grey.shade300,
-                                child: Center(
+                                child: const Center(
                                     child: CircularProgressIndicator()),
                               ),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              const Icon(Icons.error),
                         ),
                       ),
                     ),

@@ -401,11 +401,7 @@ String _appName = '';
                               child: AnimatedOpacity(
                                 opacity: _isAmountEntered ? 1.0 : 0.0,
                                 duration: Duration(milliseconds: 300),
-                                child: Image.asset(
-                                  'assets/gif/cheer_gif.gif', // Use the path to your GIF here
-                                  width:300, // Adjust size as needed
-                                  height: 300,
-                                ),
+                                child: Lottie.asset("assets/lottie/confetti.json")
                               ),
                             ),
                           ),
@@ -850,7 +846,7 @@ String _appName = '';
 
                               print(
                                   "tablePayBill user_id:$user_id, store_id:$store_id, regularoffer_id: $offerbook_history_id, bill_amount: $bill_amount, discount_Percentage: $discount_percentage, discount_Amount: $discount_amount, after_Discount_Amount: $after_discount_amount, convenience_Fee_Parcentacge: $convineince_fee_percentage, convenience_Fee: $convineince_fee, after_Convenience_Fee: $after_convineince_fee, pay_amount: $pay_amount");
-
+print("😊😊😊😊");
                               await tablePayBill(
                                   user_id,
                                   store_id,
@@ -959,6 +955,7 @@ String _appName = '';
   }
 
  Future<void> tablePayBill(
+
       String user_id,
       String store_id,
       String offerbook_history_id,
@@ -973,7 +970,9 @@ String _appName = '';
     setState(() {
       isLoading = true;
     });
+    print("🎉🎉🎉🎉");
     try {
+      print("💕💕💕💕");
       final body = {
         "user_id": "$user_id",
         "store_id": "$store_id",
@@ -1007,7 +1006,7 @@ String _appName = '';
 
           setState(() async {
             isLoading = false;
-
+            print("💕💕💕💕");
             RazorpayService.startPayment(
               orderId: '$order_id',
               apiKey: '$app_key1',
@@ -1022,13 +1021,13 @@ String _appName = '';
                 String bundle =
                     '{"razorpay_payment_id":"${response.paymentId}","razorpay_order_id":"${response.orderId}","razorpay_signature":"${response.signature}"}';
                 print('TablePayBill PaymentSuccessful::bundle $bundle');
-
+                print("😓😓😓");
                 UpdateTablePayBill(user_id, "${response.orderId}", bundle,"$pay_amount");
               },
               errorCallback: (PaymentFailureResponse response) {
                 String bundle =
                     '{"Error":"${response.error}","code":"${response.code.toString()}","message":"${response.message}"}';
-
+                print("✌️✌️✌️");
                 print(
                     'TablePayBill Payment Error: ${response.code.toString()} - ${response.message}');
                 UpdateTablePayBill(user_id, "$order_id", bundle,"$pay_amount");
@@ -1036,7 +1035,7 @@ String _appName = '';
               externalWalletCallback: (ExternalWalletResponse response) {
                 // Handle external wallet payments here
                 String bundle = '{"walletName":"${response.walletName}"}';
-
+                print("🤣🤣🤣");
                 print('TablePayBill External Wallet: ${response.walletName}');
                 UpdateTablePayBill(user_id, "$order_id", bundle,"$pay_amount");
               },
@@ -1073,6 +1072,7 @@ String _appName = '';
       String user_id, String razorpay_order_id, String bundle,String pay_amount) async {
     print(
         'UpdateTablePayBill data: user_id:$user_id, razorpay_order_id:$razorpay_order_id, bundle $bundle');
+    print("🤡🤡🤡");
     setState(() {
       isLoading = true;
     });
@@ -1092,9 +1092,9 @@ String _appName = '';
         final data = response['data'];
 
         print("UpdateTablePayBill data:  : data: $data");
-        
-      
 
+
+        print("🤷‍♀️🤷‍♀️🤷‍♀️");
         Navigator.pop(context);
         Navigator.push(
           context,
