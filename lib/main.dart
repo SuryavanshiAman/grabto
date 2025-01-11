@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:discount_deals/generated/assets.dart';
 import 'package:discount_deals/helper/InAppScreen.dart';
 import 'package:discount_deals/helper/user_provider.dart';
+import 'package:discount_deals/theme/theme.dart';
 import 'package:discount_deals/ui/splash_screen.dart';
+import 'package:discount_deals/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -95,7 +99,100 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    super.initState();
+    checkForUpdate();
+  }
+
+  AppUpdateInfo? _updateInfo;
+  Future<void> checkForUpdate() async {
+    try {
+      final info = await InAppUpdate.checkForUpdate();
+      setState(() {
+        _updateInfo = info;
+      });
+
+      if (_updateInfo?.updateAvailability ==
+          UpdateAvailability.updateAvailable) {
+        showUpdatePopup();
+      }
+    } catch (e) {
+      print("Error checking for updates: $e");
+    }
+  }
+
+  void showUpdatePopup() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+          alignment: Alignment.center,
+          backgroundColor: MyColors.redBG,
+          content: Container(
+            padding: const EdgeInsets.all(15),
+            height: heights*0.27,
+            child: Column(
+              children: [
+                const Text("Update your app!",style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.whiteBG),),
+                Image.asset(Assets.imagesGrabtoLogoWithText,height: heights*0.13,),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      height: heights*0.05,
+                      width: widths*0.25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: MyColors.whiteBG,
+                      ),
+                      child:  const Text("Later",style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: MyColors.blackBG),),),
+
+                    InkWell(
+                        onTap: (){
+                          Navigator.of(context).pop();
+                          // startImmediateUpdate();
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            height: heights*0.05,
+                            width: widths*0.25,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: MyColors.whiteBG,
+                            ),
+
+                            child: const Text("Update",style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: MyColors.blackBG),)))
+                  ],
+                )
+              ],
+            ),
+          )
+      ),
+    );
+  }
+  Future<void> startImmediateUpdate() async {
+    try {
+      await InAppUpdate.performImmediateUpdate();
+    } catch (e) {
+      showErrorMessage(context,message: '$e');
+      print("Error performing update: $e");
+    }
+  }
+  @override
   Widget build(BuildContext context) {
+    heights=MediaQuery.of(context).size.height;
+    widths=MediaQuery.of(context).size.width;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PurchaseProvider()),
@@ -118,3 +215,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+double heights=0.0;
+double widths=0.0;

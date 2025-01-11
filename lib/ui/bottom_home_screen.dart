@@ -1559,14 +1559,14 @@ class _HomeBottamScreenState extends State<HomeBottamScreen> with WidgetsBinding
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          TablePaybillScreen(
-                                              offer, offer.store_name,
-                                              offer.address)),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) =>
+                                //           TablePaybillScreen(
+                                //               offer, offer.store_name,
+                                //               offer.address)),
+                                // );
                                 if (isBookingTimePassed(
                                     offer.booking_date, offer.booking_time)) {
                                   Navigator.push(

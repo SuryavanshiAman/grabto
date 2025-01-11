@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:discount_deals/generated/assets.dart';
 import 'package:discount_deals/helper/shared_pref.dart';
 import 'package:discount_deals/helper/user_provider.dart';
+import 'package:discount_deals/main.dart';
 import 'package:discount_deals/model/city_model.dart';
 import 'package:discount_deals/model/user_model.dart';
 import 'package:discount_deals/services/api.dart';
@@ -191,13 +193,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         actions: [
           Text(
             "${current_location}",
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Container(
             width: 45,
             height: 45,
-            margin: EdgeInsets.only(right: 15),
+            margin: const EdgeInsets.only(right: 15),
             child: Card(
               elevation: 2,
               color: Colors.white,
@@ -206,13 +208,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 borderRadius: BorderRadius.circular(40.0),
               ),
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.pin_drop,
                   size: 24,
                   color: MyColors.primaryColor,
                 ),
                 onPressed: () {
-                  // Open the dialog
                   _showCityDialog();
                 },
               ),
@@ -234,9 +235,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             CategoriesBottamWidget(),
 
             //BottomLoginScreen(),
-            user_id == 0 ? BottomLoginScreen() : SortListBottamWidget(),
+            user_id == 0 ? const BottomLoginScreen() : SortListBottamWidget(),
 
-            user_id == 0 ? BottomLoginScreen() : ProfileBottomScreen(),
+            user_id == 0 ? const BottomLoginScreen() : ProfileBottomScreen(),
           ][_selectedIndex],
         ),
         // if (isLoading)
@@ -263,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 decoration: BoxDecoration(
                   //color: MyColors.primaryColor.withOpacity(0.0),
                   image: DecorationImage(
-                    image: AssetImage("assets/images/drawer_bg_img.jpg"),
+                    image: const AssetImage("assets/images/drawer_bg_img.jpg"),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
                       MyColors.primaryColor.withOpacity(0.1),
@@ -305,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                       height: double.infinity,
                                     ),
                                     errorWidget: (context, url, error) =>
-                                        Center(child: Icon(Icons.error)),
+                                        const Center(child: Icon(Icons.error)),
                                   ),
                                   // child: Image.network(
                                   //   userimage.isNotEmpty ? userimage : image,
@@ -339,7 +340,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                               height: 10,
                             ),
@@ -348,7 +349,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                   userName.isNotEmpty || userEmail.isNotEmpty,
                               child: RichText(
                                 text: TextSpan(
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 20,
                                   ),
@@ -356,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                     if (userName.isNotEmpty)
                                       TextSpan(
                                         text: '$userName\n',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 20,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -364,7 +365,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                       ),
                                     if (userName.isNotEmpty &&
                                         userMobile.isNotEmpty)
-                                      WidgetSpan(
+                                      const WidgetSpan(
                                         child: SizedBox(
                                             height:
                                                 25), // Adjust the height as needed
@@ -642,15 +643,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             ),
             ListTile(
               leading: user_id == 0
-                  ? Icon(
+                  ? const Icon(
                       Icons.login_outlined,
                       color: MyColors.drawerIconColor,
                     )
-                  : Icon(
+                  : const Icon(
                       Icons.logout_outlined,
                       color: MyColors.drawerIconColor,
                     ),
-              title: user_id == 0 ? Text(' Login ') : Text(' Logout '),
+              title: user_id == 0 ? const Text(' Login ') : const Text(' Logout '),
               onTap: () {
                 //Navigator.pop(context);
                 if (user_id == 0) {
@@ -1123,7 +1124,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 class NotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
@@ -1202,7 +1203,7 @@ class _CustomPopupState extends State<CustomPopup> {
                 height: double.infinity,
               ),
               errorWidget: (context, url, error) =>
-                  Center(child: Icon(Icons.error)),
+                  const Center(child: Icon(Icons.error)),
             ),
           ),
           Positioned(

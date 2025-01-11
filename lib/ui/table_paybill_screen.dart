@@ -62,42 +62,65 @@ String _appName = '';
   }
   
 
- void billDetails() {
-  // Parse the string values from the controller and offer into doubles
-  double? parsedBillAmount = double.tryParse(_amountController.text);
-  double? parsedDiscountPercentage = double.tryParse(widget.prebookofferlistHistory.discount_percentage);
-  
-  // Validate parsed inputs
-  if (parsedBillAmount == null || parsedDiscountPercentage == null || convenienceFeeParcentacge == null) {
-    print("Invalid input: bill amount, discount percentage, or convenience fee percentage is null.");
-    return;
+//  void billDetails() {
+//   // Parse the string values from the controller and offer into doubles
+//   double? parsedBillAmount = double.tryParse(_amountController.text);
+//   double? parsedDiscountPercentage = double.tryParse(widget.prebookofferlistHistory.discount_percentage);
+//   // Validate parsed inputs
+//   if (parsedBillAmount == null || parsedDiscountPercentage == null || convenienceFeeParcentacge == null) {
+//     print("Invalid input: bill amount, discount percentage, or convenience fee percentage is null.");
+//     return;
+//   }
+//   setState(() {
+//     _isAmountEntered = true;
+//     // Set parsed values to instance variables
+//     billamount = parsedBillAmount;
+//     discountPercentage = parsedDiscountPercentage;
+//     // Calculate discount amount and update after-discount amount
+//     discountAmount = billamount! * (discountPercentage! / 100);
+//     afterDiscountAmount = billamount! - discountAmount!;
+//     this.convenienceFeeParcentacge=convenienceFeeParcentacge;
+//     // Calculate convenience fee based on the percentage
+//     convenienceFee = discountAmount! * (convenienceFeeParcentacge! / 100);
+//     afterConvenienceFee = afterDiscountAmount! + convenienceFee!;
+//     // Set the final payment amount
+//     payamount = afterConvenienceFee;
+//     // Print the final calculated amount for verification
+//     print("Final amount : $payamount");
+//   });
+// }
+
+  void billDetails() {
+    // Parse the string values from the controller and offer into doubles
+    double? parsedBillAmount = double.tryParse(_amountController.text)!.roundToDouble();
+    double? parsedDiscountPercentage = double.tryParse(widget.prebookofferlistHistory.discount_percentage);
+
+    // Validate parsed inputs
+    if (parsedBillAmount == null || parsedDiscountPercentage == null || convenienceFeeParcentacge == null) {
+      print("Invalid input: bill amount, discount percentage, or convenience fee percentage is null.");
+      return;
+    }
+    setState(() {
+      _isAmountEntered = true;
+      // Set parsed values to instance variables
+      billamount = parsedBillAmount.roundToDouble();
+      discountPercentage = parsedDiscountPercentage;
+      // Calculate discount amount and update after-discount amount
+      discountAmount = billamount! * (discountPercentage! / 100);
+      afterDiscountAmount = billamount! - discountAmount!;
+      this.convenienceFeeParcentacge=convenienceFeeParcentacge;
+      // Calculate convenience fee based on the percentage
+      convenienceFee = discountAmount! * (convenienceFeeParcentacge! / 100);
+      afterConvenienceFee = afterDiscountAmount!.roundToDouble() + convenienceFee!;
+
+      // Set the final payment amount
+      payamount = afterConvenienceFee;
+      payamount = payamount!.roundToDouble();
+      // payamount = double.parse(payamount!.toStringAsFixed(2));
+      // Print the final calculated amount for verification
+      print("Final amount : $payamount");
+    });
   }
-                                    
-                                   
-
-  setState(() {
-    _isAmountEntered = true;
-    // Set parsed values to instance variables
-    billamount = parsedBillAmount;
-    discountPercentage = parsedDiscountPercentage;
-
-    // Calculate discount amount and update after-discount amount
-    discountAmount = billamount! * (discountPercentage! / 100);
-    afterDiscountAmount = billamount! - discountAmount!;
-
-    this.convenienceFeeParcentacge=convenienceFeeParcentacge;
-    // Calculate convenience fee based on the percentage
-    convenienceFee = discountAmount! * (convenienceFeeParcentacge! / 100);
-    afterConvenienceFee = afterDiscountAmount! + convenienceFee!;
-
-    // Set the final payment amount
-    payamount = afterConvenienceFee;
-
-    // Print the final calculated amount for verification
-    print("Final amount : $payamount");
-  });
-}
-
 
 
 
@@ -294,7 +317,7 @@ String _appName = '';
                                         ],
                                       ),
                                       Text(
-                                        "₹$afterDiscountAmount",
+                                        "₹${afterDiscountAmount!.roundToDouble()}",
                                         style: TextStyle(
                                           color: Colors.greenAccent,
                                           fontSize: 38,
@@ -343,7 +366,7 @@ String _appName = '';
                                                     // Flexible text
                                                     Flexible(
                                                       child: Text(
-                                                        "You're saving ₹$discountAmount on this bill",
+                                                        "You're saving ₹${discountAmount!.roundToDouble()} on this bill",
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 15,
@@ -707,7 +730,7 @@ String _appName = '';
                             ),
                           ),
                           Text(
-                            '- \u{20B9}$discountAmount',
+                            '- \u{20B9}${discountAmount!.roundToDouble()}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -730,7 +753,7 @@ String _appName = '';
                             ),
                           ),
                           Text(
-                            '\u{20B9}$convenienceFee',
+                            '\u{20B9}${convenienceFee!.roundToDouble()}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -766,7 +789,7 @@ String _appName = '';
                           ),
                           // Right-aligned text
                           Text(
-                            '\u{20B9}$payamount',
+                            '\u{20B9}${payamount!.roundToDouble()}',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,

@@ -15,8 +15,9 @@ class BookTableScreen extends StatefulWidget {
   String endTime;
   String storeName;
   String store_id;
+  String category_name;
 
-  BookTableScreen(this.startTime, this.endTime, this.storeName, this.store_id);
+  BookTableScreen(this.startTime, this.endTime, this.storeName, this.store_id, this.category_name);
 
   @override
   _BookTableScreenState createState() => _BookTableScreenState();
@@ -59,10 +60,6 @@ class _BookTableScreenState extends State<BookTableScreen> {
     checkTimeSlotsVisibility(_selectedDate);
   }
   Future<void> availableSeates(String storeId,dynamic date) async {
-    print("😓😓😓");
-    print("$storeId");
-    print("${DateFormat('yyyy-MM-dd').format(date)}");
-    print("😓😓😓");
     try {
       final body = {
         "store_id":storeId,
@@ -72,11 +69,9 @@ class _BookTableScreenState extends State<BookTableScreen> {
       print("😓😓😓${response!['data']}");
       if (response['error'] == false) {
         final data = response['data'];
-        print("wwwwwwAman:$data");
         setState(() {
           availableSeat=response['data'];
         });
-        print("wwwwwwAman:$availableSeat");
       } else {
         String msg = response['message'];
 
@@ -240,7 +235,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Book Table',
+                  widget.category_name=="Salon"?"Book Appointment":'Book Table',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
@@ -502,7 +497,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                                             CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Lunch', // Title
+                                                widget.category_name=="Salon"?'Day':"Lunch", // Title
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold,
@@ -609,7 +604,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                                             CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Dinner', // Title
+                                                widget.category_name=="Salon"?'Night':"Dinner",
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold,

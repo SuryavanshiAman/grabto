@@ -962,6 +962,8 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                         prebookofferlist: prebookofferlist,
                         termsAndConditions: termConditionList,
                         kycStatus:kyc_status,
+                          categoryName:category_name
+
 
                       ),
 
@@ -1436,7 +1438,9 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                                               "$start_time",
                                               "$end_time",
                                               "$storeName",
-                                              "${widget.id}")),
+                                              "${widget.id}",
+                                            "$category_name"
+                                          )),
                                 );
                               }
                   }else{
@@ -1456,10 +1460,7 @@ class _CouponFullViewScreenState extends State<CouponFullViewScreen> {
                               child: Center(
                                 child: Text(
                                   textAlign: TextAlign.center,
-                                  // category_name.toLowerCase() == "Saloon" ||category_name.toLowerCase() == "Spa"
-                                  //     ? "Book Appointment"
-                                  //     : "Book a Table",
-                                  category_name=="Saloon"? "Book Appointment": kyc_status!="Pending"?"Book a Table":"Service Unavailable",
+                                  category_name=="Salon"&& kyc_status!="Pending"? "Book Appointment": category_name!="Salon"&& kyc_status!="Pending"?"Book a Table":"Service Unavailable",
                                   style: const TextStyle(
                                       color: MyColors.whiteBG,
                                       fontSize: 18,
@@ -2580,19 +2581,21 @@ class OfferCardContainer extends StatelessWidget {
 }
 
 class PrebookOfferListWidget extends StatelessWidget {
-  String start_time, end_time, storeName, storeId,kycStatus;
+  String start_time, end_time, storeName, storeId,kycStatus,categoryName;
 
   final List<PreBookTable> prebookofferlist;
 
   final List<TermConditionModel> termsAndConditions;
 
-  PrebookOfferListWidget({required this.start_time,
+  PrebookOfferListWidget({
+    required this.start_time,
     required this.end_time,
     required this.storeName,
     required this.storeId,
     required this.prebookofferlist,
     required this.termsAndConditions,
     required this.kycStatus,
+    required this.categoryName,
   });
 
   void _showBottomSheet(BuildContext context, String title) {
@@ -2679,8 +2682,7 @@ class PrebookOfferListWidget extends StatelessWidget {
               (index) =>
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: _buildPrebookOfferWidget(
-                    context, prebookofferlist[index]),
+                child: _buildPrebookOfferWidget(context, prebookofferlist[index],categoryName),
               ),
         ),
       ),
@@ -2688,7 +2690,7 @@ class PrebookOfferListWidget extends StatelessWidget {
   }
 
   Widget _buildPrebookOfferWidget(BuildContext context,
-      PreBookTable prebooktable) {
+      PreBookTable prebooktable,categoryName) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Center(
@@ -2789,7 +2791,7 @@ kycStatus=="Approve"?
                         MaterialPageRoute(
                             builder: (context) =>
                                 BookTableScreen("$start_time",
-                                    "$end_time", "$storeName", "$storeId")),
+                                    "$end_time", "$storeName", "$storeId","$categoryName")),
                       ):showErrorMessage(context, message: "Store temporarily unavailable here.Kindly visit store for more details.");
                     },
                     child: const Text(
