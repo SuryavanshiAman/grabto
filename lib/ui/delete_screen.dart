@@ -2,7 +2,6 @@ import 'package:discount_deals/helper/shared_pref.dart';
 import 'package:discount_deals/model/user_model.dart';
 import 'package:discount_deals/services/api_services.dart';
 import 'package:discount_deals/utils/snackbar_helper.dart';
-import 'package:discount_deals/widget/icon_text_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/theme.dart';

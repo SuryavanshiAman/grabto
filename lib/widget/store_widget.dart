@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:discount_deals/main.dart';
 import 'package:discount_deals/model/store_model.dart';
 import 'package:discount_deals/theme/theme.dart';
 import 'package:discount_deals/ui/coupon_fullview_screen.dart';
@@ -40,7 +41,7 @@ class StoreWidget extends StatelessWidget {
                     child: Container(
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             height: 220,
                             child: CachedNetworkImage(
@@ -67,20 +68,21 @@ class StoreWidget extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(
+                                    SizedBox(
+                                      width: widths*0.6,
                                       child: Text(
                                         store.storeName,
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: MyColors.txtTitleColor,
-                                          fontSize: 20,
-                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: 17,
+                                          // overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ),
                                     if (store.rating.isNotEmpty)
                                       Flexible(
-                                        child: Container(
+                                        child: SizedBox(
                                           width: 65,
                                           height: 38,
                                           child: Card(
@@ -191,7 +193,7 @@ class StoreWidget extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: Image.asset(
